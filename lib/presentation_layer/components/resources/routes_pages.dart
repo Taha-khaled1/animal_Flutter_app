@@ -1,4 +1,4 @@
-import 'package:animal_app/presentation_layer/screen/home_screen.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/home_screen.dart';
 import 'package:get/get.dart';
 
 List<GetPage<dynamic>>? getPage = [
