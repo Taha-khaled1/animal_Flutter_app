@@ -1,5 +1,5 @@
-import 'package:animal_app/presentation_layer/components/resources/routes_pages.dart';
-import 'package:animal_app/presentation_layer/components/resources/theme_manager.dart';
+import 'package:animal_app/presentation_layer/resources/routes_pages.dart';
+import 'package:animal_app/presentation_layer/resources/theme_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

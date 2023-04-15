@@ -1,4 +1,4 @@
-import 'package:animal_app/presentation_layer/components/resources/assets_manager.dart';
+import 'package:animal_app/presentation_layer/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

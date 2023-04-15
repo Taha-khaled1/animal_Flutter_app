@@ -1,4 +1,4 @@
-import 'package:animal_app/presentation_layer/components/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 // import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 

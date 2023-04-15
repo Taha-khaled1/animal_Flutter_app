@@ -1,7 +1,8 @@
-import 'package:animal_app/presentation_layer/components/resources/color_manager.dart';
-import 'package:animal_app/presentation_layer/components/resources/font_manager.dart';
-import 'package:animal_app/presentation_layer/components/resources/routes_manager.dart';
-import 'package:animal_app/presentation_layer/components/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/routes_manager.dart';
+import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/screen/service_detalis/service_detalis_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ class CatogeryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Get.to(() => ServiceDetalis());
         // Get.toNamed(
         //   Routes.moreproduct,
         //   arguments: [catogeryData!.id ?? 6],

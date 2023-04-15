@@ -1,6 +1,6 @@
-import 'package:animal_app/presentation_layer/components/resources/color_manager.dart';
-import 'package:animal_app/presentation_layer/components/resources/font_manager.dart';
-import 'package:animal_app/presentation_layer/components/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 
 // // ignore: camel_case_types
