@@ -1,3 +1,4 @@
+import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
@@ -30,6 +31,7 @@ class HomeScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
+        bottomNavigationBar: CurvedNavigationBarCus(),
         backgroundColor: ColorManager.background,
         appBar: AppBar(
           backgroundColor: ColorManager.background,

@@ -3,7 +3,7 @@ import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget appbar(String title) {
+PreferredSizeWidget appbarscreen(String title) {
   return AppBar(
     elevation: 0,
     backgroundColor: ColorManager.kPrimary2,
