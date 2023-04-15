@@ -1,6 +1,9 @@
 import 'package:animal_app/presentation_layer/components/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/components/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/components/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/Clinic_Widget.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/SearchHome.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -58,42 +61,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: ColorManager.background,
-                    borderRadius: BorderRadius.circular(20),
-                    // gradient: ColorManager.y,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 5.0,
-                        spreadRadius: 2.0,
-                        offset: Offset(2.0, 2.0),
-                      ),
-                    ],
-                  ),
-                  child: TextField(
-                    style:
-                        TextStyle(color: ColorManager.kTextblack, fontSize: 15),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                          color: ColorManager.kPrimary2,
-                        ),
-                      ),
-                      hintText: 'البحث هنا ......',
-                      prefixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.search,
-                            size: 35,
-                            color: Colors.grey,
-                          )),
-                    ),
-                  ),
-                ),
+                SearchHome(),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
@@ -113,23 +81,24 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: CarouselSlider(
-                      items: ximageoffer,
-                      options: CarouselOptions(
-                        height: 400,
-                        aspectRatio: 16 / 9,
-                        viewportFraction: 1,
-                        initialPage: 0,
-                        enableInfiniteScroll: true,
-                        reverse: false,
-                        autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 3),
-                        autoPlayAnimationDuration: Duration(milliseconds: 800),
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enlargeCenterPage: true,
-                        enlargeFactor: 0.3,
-                        // onPageChanged: callbackFunction,
-                        scrollDirection: Axis.horizontal,
-                      )),
+                    items: ximageoffer,
+                    options: CarouselOptions(
+                      height: 400,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 1,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      enlargeFactor: 0.3,
+                      // onPageChanged: callbackFunction,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
                   // child: Carousel(
                   //   images: [
                   //     NetworkImage(
@@ -159,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Titelmore(
-                  text1: 'خدمات',
+                  text1: 'عيادات بيطرية',
                   text2: 'المزيد',
                   onTap: () {},
                 ),
@@ -169,113 +138,67 @@ class HomeScreen extends StatelessWidget {
                     itemCount: 8,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        width: 350,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: ColorManager.kTextblack,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: ColorManager.kPrimary),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 5.0,
-                              spreadRadius: 2.0,
-                              offset: Offset(2.0, 4.0),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          //  mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: CircleAvatar(
-                                radius: 35,
-                                backgroundImage:
-                                    AssetImage('assets/images/unsplash.png'),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'elegant pet care',
-                                    style: MangeStyles().getMediumStyle(
-                                      color: ColorManager.ktextblackk,
-                                      fontSize: FontSize.s16,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add_location,
-                                        color: ColorManager.kPrimary2,
-                                      ),
-                                      Text(
-                                        'Abu Dhabi',
-                                        style: MangeStyles().getMediumStyle(
-                                          color: ColorManager.ktextblackk,
-                                          fontSize: FontSize.s16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      SmallCircal(
-                                        color:
-                                            Color.fromARGB(255, 175, 244, 192),
-                                        image: 'assets/images/saaa.png',
-                                      ),
-                                      Text(
-                                        '4.8',
-                                        style: MangeStyles().getMediumStyle(
-                                          color: ColorManager.ktextblackk,
-                                          fontSize: FontSize.s14,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      SmallCircal(
-                                        color: Color(0xffF89D3D),
-                                        iconData: Icon(
-                                          Icons.star,
-                                          size: 20,
-                                          color:
-                                              Color.fromARGB(255, 209, 192, 45),
-                                        ),
-                                      ),
-                                      Text(
-                                        '01:00 - 08:00 PM',
-                                        style: MangeStyles().getMediumStyle(
-                                          color: ColorManager.ktextblackk,
-                                          fontSize: FontSize.s14,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
+                      return ClinicWidget();
                     },
                   ),
                 ),
                 SizedBox(
                   height: 25,
-                )
+                ),
+                Titelmore(
+                  text1: 'الاقسام',
+                  text2: 'المزيد',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: 145,
+                  child: ListView.builder(
+                    itemCount: 8,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return CatogerySmall();
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Titelmore(
+                  text1: 'الحيوانات الاكثر شعبيا',
+                  text2: 'المزيد',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: 270,
+                  child: ListView.builder(
+                    itemCount: 8,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return ProductWidget(image: 'assets/images/catbag.png');
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Titelmore(
+                  text1: 'تسوق منتجاتنا',
+                  text2: 'المزيد',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: 270,
+                  child: ListView.builder(
+                    itemCount: 8,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return ProductWidget(image: 'assets/images/image 21.png');
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
               ],
             ),
           ),
@@ -285,71 +208,115 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class SmallCircal extends StatelessWidget {
-  const SmallCircal({
+class ProductWidget extends StatelessWidget {
+  const ProductWidget({
     super.key,
-    this.image,
-    required this.color,
-    this.iconData,
+    required this.image,
   });
-  final String? image;
-  final Icon? iconData;
-  final Color color;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
-      width: 30,
-      alignment: Alignment.center,
+      width: 200,
+      margin: EdgeInsets.only(right: 7, left: 5),
       decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: ColorManager.kPrimary),
+        borderRadius: BorderRadius.circular(30),
       ),
-      child: image == null
-          ? iconData
-          : Image.asset(
-              image!,
-              height: 30,
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Image.asset(image),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'British shorthair',
+                style: MangeStyles().getMediumStyle(
+                  color: ColorManager.ktextblackk,
+                  fontSize: FontSize.s16,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                '\$199',
+                style: MangeStyles().getMediumStyle(
+                  color: ColorManager.kPrimary2,
+                  fontSize: FontSize.s16,
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              height: 55,
+              width: 45,
+              decoration: BoxDecoration(
+                color: ColorManager.kPrimary,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  topLeft: Radius.circular(5),
+                  topRight: Radius.circular(5),
+                  //  bottomRight: Radius.circular(10),
+                ),
+              ),
+              child: Icon(
+                Icons.favorite_border,
+                color: Colors.white,
+                size: 30,
+              ),
             ),
+          )
+        ],
+      ),
     );
   }
 }
 
-class Titelmore extends StatelessWidget {
-  const Titelmore({
+class CatogerySmall extends StatelessWidget {
+  const CatogerySmall({
     super.key,
-    required this.text1,
-    required this.text2,
-    this.onTap,
   });
-  final String text1, text2;
-  final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text1,
-            style: MangeStyles().getBoldStyle(
-              color: ColorManager.kPrimary2,
-              fontSize: FontSize.s18,
-            ),
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(8.0),
+          width: 110,
+          height: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: ColorManager.kPrimary),
           ),
-          InkWell(
-            onTap: onTap,
-            child: Text(
-              text2,
-              style: MangeStyles().getMediumStyle(
-                color: ColorManager.kPrimary2,
-                fontSize: FontSize.s16,
-              ),
-            ),
+          child: Image.asset(
+            'assets/images/cat.png',
+            width: 100,
+            height: 100,
           ),
-        ],
-      ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Cat',
+          style: MangeStyles().getMediumStyle(
+            color: ColorManager.kPrimary2,
+            fontSize: FontSize.s16,
+          ),
+        ),
+      ],
     );
   }
 }
