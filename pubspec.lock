@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+  day_night_time_picker:
+    dependency: "direct main"
+    description:
+      name: day_night_time_picker
+      sha256: "24abed3bcac575fe67308eb1ef8161bbfb93fa4f9742da3e791ad143110d9b6a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0+2"
   device_frame:
     dependency: transitive
     description:
@@ -775,6 +783,14 @@ packages:
     description:
       name: syncfusion_flutter_core
       sha256: "3979f0b1c5a97422cadae52d476c21fa3e0fb671ef51de6cae1d646d8b99fe1f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.4.54"
+  syncfusion_flutter_datepicker:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_datepicker
+      sha256: e4d4794d54f3a315046031d431a27e0d7350544b1bef0bcd1d2acf58f940dd37
       url: "https://pub.dev"
     source: hosted
     version: "20.4.54"

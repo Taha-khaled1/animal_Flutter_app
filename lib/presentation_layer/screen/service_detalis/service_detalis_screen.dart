@@ -6,7 +6,9 @@ import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Small_Circal.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
+import 'package:animal_app/presentation_layer/screen/service_detalis/payment_service/appoint_ment.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ServiceDetalis extends StatelessWidget {
   const ServiceDetalis({super.key});
@@ -120,7 +122,9 @@ class ServiceDetalis extends StatelessWidget {
                 haigh: 60,
                 color: ColorManager.kPrimary,
                 text: 'الحجز الان',
-                press: () {},
+                press: () {
+                  Get.to(() => Appointment());
+                },
               ),
               SizedBox(
                 height: 20,
