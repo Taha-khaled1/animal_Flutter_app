@@ -1,4 +1,5 @@
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
+import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
@@ -12,6 +13,7 @@ class FavoritScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.background,
       appBar: appbarscreen('المفضله'),
+      bottomNavigationBar: CurvedNavigationBarCus(),
       body: Container(
         child: ListView.builder(
           itemCount: 5,

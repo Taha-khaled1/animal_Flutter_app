@@ -1,5 +1,7 @@
+import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
 import 'package:flutter/material.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:get/get.dart';
 
 class SearchHome extends StatelessWidget {
   const SearchHome({
@@ -34,7 +36,9 @@ class SearchHome extends StatelessWidget {
           ),
           hintText: 'البحث هنا ......',
           prefixIcon: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => MoreProductScreen());
+              },
               icon: Icon(
                 Icons.search,
                 size: 35,
