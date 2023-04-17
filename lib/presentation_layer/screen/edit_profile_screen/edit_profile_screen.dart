@@ -28,7 +28,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen(''),
+      appBar: appbarscreen('معلومات الحساب'),
       body: InfoWidget(
         builder: (context, deviceInfo) {
           return Padding(

@@ -86,56 +86,59 @@ class _CurvedNavigationBarCusState extends State<CurvedNavigationBarCus> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      key: _bottomNavigationKey,
-      index: 0,
-      height: 60.0,
-      items: <Widget>[
-        Icon(
-          Icons.settings,
-          color: ColorManager.kPrimary2,
-        ),
-        Image.asset(
-          'assets/icons/Wishlist.png',
-        ),
-        Image.asset(
-          'assets/icons/home.png',
-          color: ColorManager.kPrimary2,
-        ),
-        Image.asset(
-          'assets/icons/shopping.png',
-        ),
-        Icon(
-          Icons.category_outlined,
-          color: ColorManager.kPrimary2,
-        ),
-      ],
-      color: ColorManager.background,
-      buttonBackgroundColor: ColorManager.kPrimary,
-      backgroundColor: ColorManager.background,
-      animationCurve: Curves.easeInOut,
-      animationDuration: Duration(seconds: 1),
-      onTap: (index) {
-        print('$pageIndex : $index');
-        if (index == 1) {
-          Get.to(() => FavoritScreen());
-        } else if (index == 2) {
-          Get.to(() => HomeScreen());
-        } else if (index == 3) {
-          Get.to(() => CartScreen());
-        } else if (index == 4) {
-          Get.to(() => MoreCatogeryScreen());
-        } else if (index == 0) {
-          Get.to(() => AccountScreen());
-        }
-        setState(
-          () {
-            pageIndex = index;
-            print('$pageIndex : $index');
-          },
-        );
-      },
-      letIndexChange: (index) => true,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: 0,
+        height: 60.0,
+        items: <Widget>[
+          Icon(
+            Icons.settings,
+            color: ColorManager.kPrimary2,
+          ),
+          Image.asset(
+            'assets/icons/Wishlist.png',
+          ),
+          Image.asset(
+            'assets/icons/home.png',
+            color: ColorManager.kPrimary2,
+          ),
+          Image.asset(
+            'assets/icons/shopping.png',
+          ),
+          Icon(
+            Icons.category_outlined,
+            color: ColorManager.kPrimary2,
+          ),
+        ],
+        color: ColorManager.background,
+        buttonBackgroundColor: ColorManager.kPrimary,
+        backgroundColor: ColorManager.background,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(seconds: 1),
+        onTap: (index) {
+          print('$pageIndex : $index');
+          if (index == 1) {
+            Get.to(() => FavoritScreen());
+          } else if (index == 2) {
+            Get.to(() => HomeScreen());
+          } else if (index == 3) {
+            Get.to(() => CartScreen());
+          } else if (index == 4) {
+            Get.to(() => MoreCatogeryScreen());
+          } else if (index == 0) {
+            Get.to(() => AccountScreen());
+          }
+          setState(
+            () {
+              pageIndex = index;
+              print('$pageIndex : $index');
+            },
+          );
+        },
+        letIndexChange: (index) => true,
+      ),
     );
   }
 }
