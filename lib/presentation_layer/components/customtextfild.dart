@@ -107,7 +107,7 @@ class CustomTextfeild extends StatelessWidget {
               fillColor: fillColor ?? ColorManager.grey2.withOpacity(0.7),
               hintText: titel,
               hintStyle: MangeStyles().getLightStyle(
-                color: ColorManager.kTextblack,
+                color: ColorManager.ktextblackk,
                 fontSize: FontSize.s16,
               ),
             ),

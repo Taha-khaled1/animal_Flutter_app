@@ -6,9 +6,11 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/widget/customListtile.dart';
+import 'package:animal_app/presentation_layer/screen/edit_profile_screen/edit_profile_screen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/aboutpage.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/sharescreen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/terms.dart';
+import 'package:animal_app/presentation_layer/support_screen/support_problem_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +43,9 @@ class AccountScreen extends StatelessWidget {
                 CustomListtile(
                   widget: Icon(Icons.person),
                   titel: 'معلومات الحساب',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(EditProfileScreen());
+                  },
                 ),
                 CustomListtile(
                   widget: Icon(Icons.privacy_tip_outlined),
@@ -78,7 +82,11 @@ class AccountScreen extends StatelessWidget {
                 CustomListtile(
                   widget: Icon(Icons.call),
                   titel: 'تواصل معنا',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(
+                      SupportProblemScreen(),
+                    );
+                  },
                 ),
                 CustomListtile(
                   widget: Icon(Icons.info_outline),
@@ -100,7 +108,7 @@ class AccountScreen extends StatelessWidget {
                     text: 'تسجيل الخروج',
                     press: () {},
                   ),
-                )
+                ),
               ],
             ),
           );
