@@ -10,36 +10,50 @@ class FavoritScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.background,
       appBar: appbarscreen('المفضله'),
       body: Container(
         child: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
             return Container(
+              alignment: Alignment.center,
               height: 100,
               width: double.infinity,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(),
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 35,
+                    backgroundImage: AssetImage('assets/images/catbag.png'),
+                  ),
+                  SizedBox(
+                    width: 25,
+                  ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 16),
                       Text(
                         'قطه',
                         style: MangeStyles().getBoldStyle(
-                          color: ColorManager.kTextblack,
+                          color: ColorManager.ktextblackk,
                           fontSize: FontSize.s18,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 1),
                       Text(
                         'افحص التافصيل',
                         style: MangeStyles().getBoldStyle(
-                          color: ColorManager.kTextblack,
+                          color: Colors.grey,
                           fontSize: FontSize.s18,
                         ),
                       ),
                     ],
                   ),
+                  Expanded(child: SizedBox()),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(

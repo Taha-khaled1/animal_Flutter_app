@@ -1,7 +1,9 @@
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/screen/favorit_screen/favorit_screen.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/home_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 int pageIndex = 0;
 
@@ -111,6 +113,12 @@ class _CurvedNavigationBarCusState extends State<CurvedNavigationBarCus> {
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(seconds: 1),
       onTap: (index) {
+        print('$pageIndex : $index');
+        if (index == 1) {
+          Get.to(() => FavoritScreen());
+        } else if (index == 2) {
+          Get.to(() => HomeScreen());
+        }
         setState(
           () {
             pageIndex = index;

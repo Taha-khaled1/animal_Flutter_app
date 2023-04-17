@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 PreferredSizeWidget appbarscreen(String title) {
   return AppBar(
     elevation: 0,
-    backgroundColor: ColorManager.kPrimary2,
+    backgroundColor: ColorManager.background,
     leading: BackButton(
-      color: ColorManager.kTextblack,
+      color: ColorManager.kPrimary,
     ),
     centerTitle: true,
     title: Text(
       title,
       style: MangeStyles().getBoldStyle(
-        color: ColorManager.kTextblack,
+        color: ColorManager.ktextblackk,
         fontSize: FontSize.s18,
       ),
     ),
