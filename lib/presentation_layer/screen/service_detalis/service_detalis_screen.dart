@@ -1,3 +1,4 @@
+import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
@@ -112,7 +113,17 @@ class ServiceDetalis extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: 20,
+              ),
+              CustomButton(
+                width: 185,
+                haigh: 60,
+                color: ColorManager.kPrimary,
+                text: 'الحجز الان',
+                press: () {},
+              ),
+              SizedBox(
+                height: 20,
               ),
               Titelmore(
                 text1: 'خدمات',

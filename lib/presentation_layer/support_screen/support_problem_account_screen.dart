@@ -41,7 +41,7 @@ class SupportProblemScreen extends StatelessWidget {
                         : deviceInfo.localWidth * 0.85,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
-                      color: ColorManager.white,
+                      color: ColorManager.kTextblack,
                       borderRadius: BorderRadius.circular(25),
                       boxShadow: const [
                         BoxShadow(
@@ -100,7 +100,7 @@ class SupportProblemScreen extends StatelessWidget {
                                     return controller.name = p0!;
                                   },
                                   titel: 'الاسم واللقب',
-                                  width: deviceInfo.localWidth * 0.85,
+                                  width: deviceInfo.localWidth * 0.02,
                                   height: 70,
                                   isenabledBorder: false,
                                 ),
@@ -124,7 +124,7 @@ class SupportProblemScreen extends StatelessWidget {
                                     return controller.email = p0!;
                                   },
                                   titel: 'البريد الاكتروني',
-                                  width: deviceInfo.localWidth * 0.85,
+                                  width: deviceInfo.localWidth * 0.02,
                                   height: 70,
                                   isenabledBorder: false,
                                 ),
@@ -140,7 +140,7 @@ class SupportProblemScreen extends StatelessWidget {
                                   ),
                                 ),
                                 CustomTextfeild(
-                                  fillColor: ColorManager.grey2,
+                                  // fillColor: ColorManager.grey2,
                                   maxLines: 8,
                                   valid: (p0) {
                                     return validInput(
@@ -150,7 +150,7 @@ class SupportProblemScreen extends StatelessWidget {
                                     return controller.message = p0!;
                                   },
                                   titel: 'اترك رسالتك هنا ...',
-                                  width: deviceInfo.localWidth * 0.85,
+                                  width: deviceInfo.localWidth * 0.02,
                                   height: 140,
                                   isBoarder: BorderStyle.none,
                                 ),
@@ -158,33 +158,19 @@ class SupportProblemScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        CircleButton(
-                          color1: ColorManager.controlercolor,
-                          onTap: () {},
-                          iconData: 'assets/icons/send.svg',
-                        ),
-                        // Positioned(
-                        //   bottom: 0,
-                        //   left: 0,
-                        //   right: 0,
-                        //   child: Transform.translate(
-                        //     offset: const Offset(0, 30),
-                        //     child: GetBuilder<SupportController>(
-                        //       builder: (controller) {
-                        //         return HandlingDataView(
-                        //           statusRequest: controller.statusRequest,
-                        //           widget: CircleButton(
-                        //             color1: ColorManager.controlercolor,
-                        //             onTap: () {
-                        //               controller.contactUs(context);
-                        //             },
-                        //             iconData: 'assets/icons/send.svg',
-                        //           ),
-                        //         );
-                        //       },
-                        //     ),
-                        //   ),
-                        // )
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Transform.translate(
+                            offset: const Offset(0, 30),
+                            child: CircleButton(
+                              color1: ColorManager.controlercolor,
+                              onTap: () {},
+                              iconData: 'assets/icons/send.svg',
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

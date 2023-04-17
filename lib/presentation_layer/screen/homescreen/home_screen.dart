@@ -7,6 +7,8 @@ import 'package:animal_app/presentation_layer/screen/homescreen/widget/Clinic_Wi
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/SearchHome.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
+import 'package:animal_app/presentation_layer/screen/more_catogery/morecatogeryscreen.dart';
+import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
 import 'package:animal_app/presentation_layer/screen/product_detalis/product_detalis_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +124,9 @@ class HomeScreen extends StatelessWidget {
                 Titelmore(
                   text1: 'خدمات',
                   text2: 'المزيد',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => MoreCatogeryScreen());
+                  },
                 ),
                 SizedBox(
                   height: 200,
@@ -173,7 +177,9 @@ class HomeScreen extends StatelessWidget {
                 Titelmore(
                   text1: 'الحيوانات الاكثر شعبيا',
                   text2: 'المزيد',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => MoreProductScreen());
+                  },
                 ),
                 SizedBox(
                   height: 270,
@@ -191,7 +197,9 @@ class HomeScreen extends StatelessWidget {
                 Titelmore(
                   text1: 'تسوق منتجاتنا',
                   text2: 'المزيد',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => MoreProductScreen());
+                  },
                 ),
                 SizedBox(
                   height: 270,
