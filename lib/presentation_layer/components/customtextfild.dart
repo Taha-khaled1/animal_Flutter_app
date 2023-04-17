@@ -1,10 +1,8 @@
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
-import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
-// import 'package:animal_app/presentation_layer/resources/color_manager.dart';
-// import 'package:animal_app/presentation_layer/resources/font_manager.dart';
-// import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
+
+import '../resources/font_manager.dart';
 
 class CustomTextfeild extends StatelessWidget {
   final String titel;
@@ -20,9 +18,9 @@ class CustomTextfeild extends StatelessWidget {
   final int? maxLines;
   final Color? fillColor;
   final bool? isenabledBorder;
-  final void Function(String)? onChanged;
   final bool readOnly;
   final void Function()? onTap;
+  final String? text;
   const CustomTextfeild({
     super.key,
     this.iconontap,
@@ -41,89 +39,80 @@ class CustomTextfeild extends StatelessWidget {
     this.isenabledBorder = true,
     this.readOnly = false,
     this.onTap,
-    this.onChanged,
+    this.text,
   });
-
+// 70 122
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: TextFormField(
-          style: MangeStyles().getRegularStyle(
-            color: ColorManager.kTextblack,
-            fontSize: FontSize.s17,
-          ),
-          onTap: onTap,
-          readOnly: readOnly,
-          maxLines: maxLines,
-          initialValue: inialvalue,
-          textDirection: textDirection,
-          obscureText: obsecuer == null ? false : obsecuer!,
-          onSaved: onsaved,
-          validator: valid,
-          onChanged: onChanged,
-          decoration: InputDecoration(
-            prefixIcon: icon != null
-                ? IconButton(
-                    onPressed: iconontap,
-                    icon: Icon(icon),
-                  )
-                : null,
-
-            enabledBorder: isenabledBorder == true
-                ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                      width: 1,
-                      style: isBoarder ?? BorderStyle.solid,
-                      color: ColorManager.kTextlightgray,
-                    ), //<-- SEE HERE
-                  )
-                : OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                      width: 1,
-                      // style: BorderStyle.none,
-                      color: ColorManager.kTextlightgray,
-                    ), //<-- SEE HERE
-                  ),
-
-            errorBorder: OutlineInputBorder(
-              gapPadding: 10,
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(
-                width: 1,
-                // style: BorderStyle.none,
-                color: ColorManager.error,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width),
+      child: Column(
+        children: [
+          if (text != null)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                text!,
+                style: MangeStyles().getBoldStyle(
+                  color: ColorManager.kPrimary,
+                  fontSize: FontSize.s20,
+                ),
               ),
             ),
-            focusedErrorBorder: OutlineInputBorder(
-              gapPadding: 10,
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(
-                width: 1,
-                // style: BorderStyle.none,
-                color: ColorManager.error,
-              ), //<-- SEE HERE
-            ),
+          TextFormField(
+            onTap: onTap,
+            readOnly: readOnly,
+            maxLines: maxLines,
+            initialValue: inialvalue,
+            textDirection: textDirection,
+            obscureText: obsecuer == null ? false : obsecuer!,
+            onSaved: onsaved,
+            validator: valid,
+            decoration: InputDecoration(
+              prefixIcon: icon != null
+                  ? IconButton(
+                      onPressed: iconontap,
+                      icon: Icon(icon),
+                    )
+                  : null,
 
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide.none,
-            ),
+              enabledBorder: isenabledBorder == true
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        width: 1.2,
+                        style: isBoarder ?? BorderStyle.solid,
+                        color: ColorManager.grey2,
+                      ), //<-- SEE HERE
+                    )
+                  : OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        width: 0,
+                        // style: BorderStyle.none,
+                        color: ColorManager.grey2,
+                      ), //<-- SEE HERE
+                    ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  width: 1.2,
+                  // style: BorderStyle.none,
+                  color: ColorManager.grey2,
+                ), //<-- SEE HERE
+              ),
 
-            //  enabled: true,
-            filled: true,
-            fillColor: ColorManager.bgColor,
-            hintText: titel,
-            hintStyle: MangeStyles().getRegularStyle(
-              color: ColorManager.kTextblack,
-              fontSize: FontSize.s16,
+              //  enabled: true,
+              filled: true,
+              fillColor: fillColor ?? ColorManager.grey2.withOpacity(0.7),
+              hintText: titel,
+              hintStyle: MangeStyles().getLightStyle(
+                color: ColorManager.kTextblack,
+                fontSize: FontSize.s16,
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

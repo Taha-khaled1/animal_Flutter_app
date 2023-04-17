@@ -1,4 +1,5 @@
 import 'package:animal_app/presentation_layer/cart_screen/cart_screen.dart';
+import 'package:animal_app/presentation_layer/screen/account_screen/account_screen.dart';
 import 'package:animal_app/presentation_layer/screen/more_catogery/morecatogeryscreen.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/screen/favorit_screen/favorit_screen.dart';
@@ -124,6 +125,8 @@ class _CurvedNavigationBarCusState extends State<CurvedNavigationBarCus> {
           Get.to(() => CartScreen());
         } else if (index == 4) {
           Get.to(() => MoreCatogeryScreen());
+        } else if (index == 0) {
+          Get.to(() => AccountScreen());
         }
         setState(
           () {
