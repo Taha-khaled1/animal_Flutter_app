@@ -1,3 +1,4 @@
+import 'package:animal_app/presentation_layer/cart_screen/cart_screen.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/account_screen.dart';
 import 'package:animal_app/presentation_layer/screen/more_catogery/morecatogeryscreen.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
@@ -16,10 +17,11 @@ class Example extends StatefulWidget {
 class _ExampleState extends State<Example> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    FavoritScreen(),
-    AccountScreen(),
     MoreCatogeryScreen(),
+    FavoritScreen(),
+    HomeScreen(),
+    CartScreen(),
+    AccountScreen(),
   ];
   double high = 30;
   double size = 30;
@@ -32,7 +34,7 @@ class _ExampleState extends State<Example> {
         height: 60.0,
         items: <Widget>[
           Image.asset(
-            'assets/icons/setting.png',
+            'assets/icons/category.png',
             width: size,
             height: high,
             color: pageIndex == 0
@@ -40,7 +42,7 @@ class _ExampleState extends State<Example> {
                 : ColorManager.kPrimary2,
           ),
           Image.asset(
-            'assets/icons/category.png',
+            'assets/icons/heart.png',
             width: size,
             height: high,
             color: pageIndex == 1
@@ -63,9 +65,14 @@ class _ExampleState extends State<Example> {
                 ? ColorManager.background
                 : ColorManager.kPrimary2,
           ),
-          // Image.asset(
-          //   'assets/icons/Wishlist.png',
-          // ),
+          Image.asset(
+            'assets/icons/setting.png',
+            width: size,
+            height: high,
+            color: pageIndex == 4
+                ? ColorManager.background
+                : ColorManager.kPrimary2,
+          ),
         ],
         color: ColorManager.background,
         buttonBackgroundColor: ColorManager.kPrimary,

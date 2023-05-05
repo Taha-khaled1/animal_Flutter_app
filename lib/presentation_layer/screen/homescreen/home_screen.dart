@@ -21,7 +21,7 @@ List<Widget> ximageoffer = [
     ),
     child: ClipRRect(
       borderRadius: BorderRadius.circular(25),
-      child: Image.asset('assets/images/5393728.jpg'),
+      child: Image.asset('assets/images/offer.png'),
     ),
   ),
 ];
@@ -70,12 +70,12 @@ class HomeScreen extends StatelessWidget {
             child: ListView(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 SearchHome(),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                   child: Text(
                     'العروض',
                     style: MangeStyles().getBoldStyle(
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 12),
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: 225,
+                  height: 160,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -131,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 160,
                   child: ListView.builder(
                     itemCount: 8,
                     scrollDirection: Axis.horizontal,
@@ -146,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                   onTap: () {},
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 140,
                   child: ListView.builder(
                     itemCount: 8,
                     scrollDirection: Axis.horizontal,

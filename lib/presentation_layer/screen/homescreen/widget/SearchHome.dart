@@ -31,7 +31,7 @@ class SearchHome extends StatelessWidget {
             ],
           ),
           child: TextFormField(
-            style: TextStyle(color: ColorManager.kTextblack, fontSize: 15),
+            style: TextStyle(color: ColorManager.kTextblack, fontSize: 12),
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),

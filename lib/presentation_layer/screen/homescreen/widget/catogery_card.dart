@@ -46,7 +46,7 @@ class CatogeryCard extends StatelessWidget {
             //   ),
             // ),
             SizedBox(
-              height: 50,
+              height: 30,
               child: Text(
                 'حلاقة شعر',
                 textAlign: TextAlign.center,
