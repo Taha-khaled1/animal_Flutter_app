@@ -10,7 +10,6 @@ class MoreCatogeryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBarCus(),
       backgroundColor: ColorManager.background,
       appBar: appbarscreen('الخدمات'),
       body: Align(

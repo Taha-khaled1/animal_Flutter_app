@@ -13,7 +13,7 @@ class ClinicWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
-      width: 350,
+      width: 320,
       height: 50,
       decoration: BoxDecoration(
         color: ColorManager.kTextblack,
@@ -25,7 +25,7 @@ class ClinicWidget extends StatelessWidget {
           //   blurRadius: 5.0,
           //   //   spreadRadius: 2.0,
           //   offset: Offset(2, 8),
-          // ),
+          // ), flutter pub run flutter_launcher_icons
         ],
       ),
       child: Row(

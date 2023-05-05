@@ -6,7 +6,7 @@ class ColorManager {
   static Color ktextw = Color(0xff709AFF);
   static Color kTextblack = Color(0xffFFFFFF);
   static Color ktextblackk = Color(0xff050414);
-  static Color background = Color(0xffF5F5F5);
+  static Color background = Color(0xffFfffff);
   static Color grey2 = Color(0xffEDEDED);
   static Color icon = Color(0xff709AFF);
   static Color kPrimary = Color(0xff1BBCB6);

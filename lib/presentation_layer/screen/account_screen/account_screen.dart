@@ -22,7 +22,6 @@ class AccountScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.background,
       appBar: appbarscreen('معلومات الحساب'),
-      bottomNavigationBar: CurvedNavigationBarCus(),
       body: InfoWidget(
         builder: (context, deviceInfo) {
           return Container(

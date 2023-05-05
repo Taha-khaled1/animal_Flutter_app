@@ -13,7 +13,6 @@ class ServiceDetalis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBarCus(),
       body: Container(
         child: SingleChildScrollView(
           child: Column(

@@ -34,7 +34,6 @@ class HomeScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
-        bottomNavigationBar: CurvedNavigationBarCus(),
         backgroundColor: ColorManager.background,
         appBar: AppBar(
           backgroundColor: ColorManager.background,
@@ -58,7 +57,10 @@ class HomeScreen extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: Image.asset('assets/images/not.png'),
+              icon: Image.asset(
+                'assets/icons/ringing.png',
+                color: ColorManager.kPrimary2,
+              ),
             ),
           ],
         ),
@@ -240,7 +242,12 @@ class ProductWidget extends StatelessWidget {
         margin: EdgeInsets.only(right: 7, left: 5),
         decoration: BoxDecoration(
           border: Border.all(color: ColorManager.kPrimary),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(10),
+          ),
         ),
         child: Stack(
           alignment: AlignmentDirectional.center,

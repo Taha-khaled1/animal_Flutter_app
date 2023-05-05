@@ -13,7 +13,6 @@ class FavoritScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.background,
       appBar: appbarscreen('المفضله'),
-      bottomNavigationBar: CurvedNavigationBarCus(),
       body: Container(
         child: ListView.builder(
           itemCount: 5,

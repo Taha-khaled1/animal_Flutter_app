@@ -1,3 +1,4 @@
+import 'package:animal_app/data_layer/models/carttest.dart';
 import 'package:animal_app/presentation_layer/cart_screen/cart_controller/cart_controller.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
@@ -10,8 +11,9 @@ class CartCard extends StatelessWidget {
   const CartCard({
     Key? key,
     this.index,
+    this.cart,
   }) : super(key: key);
-  // final CartItems? cart;
+  final CartItem? cart;
 
   final int? index;
   @override
@@ -32,7 +34,7 @@ class CartCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Image.asset(
-                  'assets/images/catbag.png',
+                  cart!.image,
                   width: 200,
                   height: 210,
                   fit: BoxFit.fill,
@@ -47,7 +49,7 @@ class CartCard extends StatelessWidget {
               SizedBox(
                 width: 200,
                 child: Text(
-                  'القطه الكبيره', textAlign: TextAlign.right,
+                  cart!.name, textAlign: TextAlign.right,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
@@ -72,7 +74,7 @@ class CartCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: '200',
+                      text: cart!.price.toString(),
                       style: MangeStyles().getBoldStyle(
                         color: ColorManager.kPrimary,
                         fontSize: FontSize.s16,
@@ -85,10 +87,14 @@ class CartCard extends StatelessWidget {
                 builder: (controller) {
                   return IncrasingorDecrasing(
                     fontsize: 25,
-                    count: 1,
+                    count: cart!.count,
                     size: 30,
-                    onTapAdd: () {},
-                    onTapmuns: () {},
+                    onTapAdd: () {
+                      cartController.icrasingCount(index!, 20.0);
+                    },
+                    onTapmuns: () {
+                      cartController.decrasingCount(index!, 20.0);
+                    },
                   );
                 },
               ),

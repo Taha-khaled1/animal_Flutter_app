@@ -3,10 +3,20 @@ import 'package:get/get.dart';
 
 import 'package:quickalert/quickalert.dart';
 
+import '../../../data_layer/models/carttest.dart';
+
 class CartController extends GetxController {
   double totelPrice = 0;
   double totelTex = 0;
   int count = 0;
+  bool xtemp = false;
+  bool ctemp = false;
+  String deliveryType = '';
+
+  void updatePay(String value) {
+    deliveryType = value;
+    update();
+  }
   // CartListModels? cartListModels;
   // List<CartItems> carModelsdemo = [];
 
@@ -67,19 +77,21 @@ class CartController extends GetxController {
   //   update();
   // }
 
-  // icrasingCount(int count, double price) {
-  //   count++;
-  //   totelPrice += price;
-  //   update();
-  // }
+  icrasingCount(int index, double price) {
+    count++;
+    cartItem[index].count++;
+    totelPrice += price;
+    update();
+  }
 
-  // decrasingCount(int count, double price) {
-  //   if (count > 1) {
-  //     count--;
-  //     totelPrice -= price;
-  //     update();
-  //   }
-  // }
+  decrasingCount(int index, double price) {
+    if (count > 1) {
+      count--;
+      cartItem[index].count--;
+      totelPrice -= price;
+      update();
+    }
+  }
 
   // StatusRequest statusRequest1 = StatusRequest.none;
   // saveOrder(BuildContext context, String id) async {
