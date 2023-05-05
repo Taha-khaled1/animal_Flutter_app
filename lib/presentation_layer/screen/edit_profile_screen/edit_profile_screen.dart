@@ -42,16 +42,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 child: ListView(
                   shrinkWrap: false,
                   children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        'تعديل الحساب',
-                        style: MangeStyles().getBoldStyle(
-                          color: ColorManager.kPrimary,
-                          fontSize: FontSize.s25,
-                        ),
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.topRight,
+                    //   child: Text(
+                    //     'تعديل الحساب',
+                    //     style: MangeStyles().getBoldStyle(
+                    //       color: ColorManager.kPrimary,
+                    //       fontSize: FontSize.s25,
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),

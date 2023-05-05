@@ -9,6 +9,7 @@ import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
 import 'package:animal_app/presentation_layer/screen/more_catogery/morecatogeryscreen.dart';
 import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
+import 'package:animal_app/presentation_layer/screen/notfiction_screen/notfiction_screen.dart';
 import 'package:animal_app/presentation_layer/screen/product_detalis/product_detalis_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,9 @@ class HomeScreen extends StatelessWidget {
               icon: Image.asset('assets/images/Vector.png'),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(NotficationScreen());
+              },
               icon: Image.asset(
                 'assets/icons/ringing.png',
                 color: ColorManager.kPrimary2,
