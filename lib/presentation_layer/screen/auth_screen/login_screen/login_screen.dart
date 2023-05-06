@@ -7,6 +7,7 @@ import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/DoubleDivider.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/SocialIcon.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/forgot%20_password_screen/forgot_password_screen.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/siginup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -77,7 +78,9 @@ class Login_Screen extends StatelessWidget {
                         horizontal: deviceInfo.localWidth * 0.03,
                       ),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => ForgotPassword_Screen());
+                        },
                         child: Text(
                           'نسيت كلمة السر',
                           style: MangeStyles().getBoldStyle(
