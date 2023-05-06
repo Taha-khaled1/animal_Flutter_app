@@ -5,18 +5,18 @@ import 'package:animal_app/presentation_layer/components/customtextfild.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
-import 'package:animal_app/presentation_layer/screen/auth_screen/otp.dart';
-
+import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/siginup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ForgotPassword_Screen extends StatelessWidget {
-  const ForgotPassword_Screen({Key? key}) : super(key: key);
+class ResertPasswordScreen extends StatelessWidget {
+  const ResertPasswordScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen('نسيت كلمة السر'),
+      appBar: appbarscreen('تعيين كلمة مرور جديدة'),
       body: Container(
         alignment: Alignment.topCenter,
         child: InfoWidget(
@@ -24,15 +24,15 @@ class ForgotPassword_Screen extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: deviceInfo.screenHeight * 0.15,
+                    height: deviceInfo.screenHeight * 0.1,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Text(
-                      'لا تقلق من حدوث ذالك فقط ادخل البريد الاكتروني الخاص بك وسيتم ارسال لك كود لاعادة كتابة كلمة السر',
+                      'أدخل كلمة المرور الجديدة أدناه وتحقق من التلميح أثناء تعيينه.',
                       style: TextStyle(
                         color: ColorManager.white,
                         fontSize: FontSize.s18,
@@ -43,26 +43,47 @@ class ForgotPassword_Screen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   CustomTextfeild(
                     valid: (p0) {},
+                    obsecuer: true,
                     onsaved: (p0) {},
-                    titel: 'البريد الاكتروني',
+                    titel: 'كلمة السر الجديده',
                     width: 15,
                     height: 100,
-                    icon: Icons.email,
+                    icon: Icons.lock,
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 20,
+                  ),
+                  CustomTextfeild(
+                    valid: (p0) {},
+                    obsecuer: true,
+                    onsaved: (p0) {},
+                    titel: ' تاكيد كلمة السر',
+                    width: 15,
+                    height: 100,
+                    icon: Icons.lock,
+                  ),
+                  SizedBox(
+                    height: 12,
                   ),
                   CustomButton(
                     width: deviceInfo.localWidth * 0.8,
                     haigh: 60,
                     color: ColorManager.kPrimary,
-                    text: 'تاكيد',
-                    press: () {
-                      Get.to(() => OtpScreen());
+                    text: 'تسجيل الدخول',
+                    press: () {},
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  TextWithButtonTExt(
+                    text1: 'ليس لديك حساب؟',
+                    text2: 'اشتراك',
+                    onTap: () {
+                      Get.to(() => SiginUp_Screen());
                     },
                   ),
                 ],

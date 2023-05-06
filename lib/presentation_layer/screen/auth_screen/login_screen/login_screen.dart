@@ -1,6 +1,7 @@
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/customtextfild.dart';
+import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
@@ -96,7 +97,9 @@ class Login_Screen extends StatelessWidget {
                     haigh: 60,
                     color: ColorManager.kPrimary,
                     text: 'تسجيل الدخول',
-                    press: () {},
+                    press: () {
+                      Get.to(() => Example());
+                    },
                   ),
                   DoubleDivider(),
                   Row(
