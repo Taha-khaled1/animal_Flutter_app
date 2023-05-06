@@ -6,8 +6,9 @@ import 'package:animal_app/presentation_layer/screen/favorit_screen/favorit_scre
 import 'package:animal_app/presentation_layer/screen/homescreen/home_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-int pageIndex = 0;
+int pageIndex = 2;
 
 class Example extends StatefulWidget {
   @override
@@ -25,12 +26,13 @@ class _ExampleState extends State<Example> {
   ];
   double high = 30;
   double size = 30;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 0,
+        index: 2,
         height: 60.0,
         items: <Widget>[
           Image.asset(
@@ -86,7 +88,7 @@ class _ExampleState extends State<Example> {
           // if (index == 1 && sharedPreferences.getString('token') == null) {
           //   print('cccc');
           //   return aleartToken(context);
-          // }
+          // }s
           setState(() {
             pageIndex = index;
             print('$pageIndex : $index');
