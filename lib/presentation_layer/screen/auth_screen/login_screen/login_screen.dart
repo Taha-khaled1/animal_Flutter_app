@@ -7,7 +7,9 @@ import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/DoubleDivider.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/SocialIcon.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/siginup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Login_Screen extends StatelessWidget {
   const Login_Screen({Key? key}) : super(key: key);
@@ -108,7 +110,13 @@ class Login_Screen extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
-                  TextWithButtonTExt(text1: 'ليس لديك حساب؟', text2: 'اشتراك'),
+                  TextWithButtonTExt(
+                    text1: 'ليس لديك حساب؟',
+                    text2: 'اشتراك',
+                    onTap: () {
+                      Get.to(() => SiginUp_Screen());
+                    },
+                  ),
                 ],
               ),
             );

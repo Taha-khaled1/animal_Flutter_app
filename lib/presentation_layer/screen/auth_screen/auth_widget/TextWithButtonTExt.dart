@@ -9,9 +9,11 @@ class TextWithButtonTExt extends StatelessWidget {
     required this.text1,
     required this.text2,
     this.width,
+    this.onTap,
   });
   final String text1, text2;
   final double? width;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,7 +31,7 @@ class TextWithButtonTExt extends StatelessWidget {
           width: width ?? 10,
         ),
         InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Text(
             text2,
             style: MangeStyles().getBoldStyle(

@@ -4,10 +4,12 @@ import 'package:animal_app/presentation_layer/components/customtextfild.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
-import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/DoubleDivider.dart';
-import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/SocialIcon.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/widget/AccpetPrivecy.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../login_screen/login_screen.dart';
 
 class SiginUp_Screen extends StatelessWidget {
   const SiginUp_Screen({Key? key}) : super(key: key);
@@ -27,14 +29,11 @@ class SiginUp_Screen extends StatelessWidget {
                   SizedBox(
                     height: deviceInfo.screenHeight * 0.05,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 40),
-                    child: Text(
-                      'مرحبًا،\nمرحبًا بعودتك مجددا',
-                      style: MangeStyles().getBoldStyle(
-                        color: ColorManager.white,
-                        fontSize: FontSize.s25,
-                      ),
+                  Text(
+                    'انشاء حساب جديد',
+                    style: MangeStyles().getBoldStyle(
+                      color: ColorManager.white,
+                      fontSize: FontSize.s25,
                     ),
                   ),
                   CircleAvatar(
@@ -42,6 +41,17 @@ class SiginUp_Screen extends StatelessWidget {
                     backgroundColor: ColorManager.background,
                     backgroundImage:
                         AssetImage('assets/icons/logoa_animal (2).png'),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextfeild(
+                    valid: (p0) {},
+                    onsaved: (p0) {},
+                    titel: 'الاسم الكامل',
+                    width: 15,
+                    height: 100,
+                    icon: Icons.person,
                   ),
                   SizedBox(
                     height: 20,
@@ -66,49 +76,37 @@ class SiginUp_Screen extends StatelessWidget {
                     icon: Icons.lock,
                   ),
                   SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextfeild(
+                    valid: (p0) {},
+                    onsaved: (p0) {},
+                    titel: 'تاكيد كلمة السر',
+                    width: 15,
+                    height: 100,
+                    icon: Icons.lock,
+                  ),
+                  SizedBox(
                     height: 12,
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: deviceInfo.localWidth * 0.03,
-                      ),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'نسيت كلمة السر',
-                          style: MangeStyles().getBoldStyle(
-                            color: ColorManager.kPrimary2,
-                            fontSize: FontSize.s20,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  AccpetPrivecy(),
                   CustomButton(
                     width: deviceInfo.localWidth * 0.8,
                     haigh: 60,
                     color: ColorManager.kPrimary,
-                    text: 'تسجيل الدخول',
+                    text: 'انشاء الحساب',
                     press: () {},
-                  ),
-                  DoubleDivider(),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialIcon(image: 'assets/icons/facebook.png'),
-                      SizedBox(
-                        width: 25,
-                      ),
-                      SocialIcon(image: 'assets/icons/google.png'),
-                    ],
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  TextWithButtonTExt(text1: 'ليس لديك حساب؟', text2: 'اشتراك'),
+                  TextWithButtonTExt(
+                    text1: 'امتلك  حساب؟',
+                    text2: 'تسجيل الدخول',
+                    onTap: () {
+                      Get.to(() => Login_Screen());
+                    },
+                  ),
                 ],
               ),
             );
