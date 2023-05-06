@@ -36,8 +36,9 @@ class ClinicWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: CircleAvatar(
-              radius: 35,
-              backgroundImage: AssetImage('assets/images/unsplash.png'),
+              backgroundColor: ColorManager.background,
+              radius: 40,
+              backgroundImage: AssetImage('assets/icons/logoa_animal (2).png'),
             ),
           ),
           Padding(
