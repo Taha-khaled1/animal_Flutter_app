@@ -8,6 +8,7 @@ class CustomTextfeild extends StatelessWidget {
   final String titel;
   final bool? obsecuer;
   final IconData? icon;
+  final IconData? suffixIcon;
   final void Function()? iconontap;
   final String? Function(String?)? onsaved;
   final String? Function(String?)? valid;
@@ -40,6 +41,7 @@ class CustomTextfeild extends StatelessWidget {
     this.readOnly = false,
     this.onTap,
     this.text,
+    this.suffixIcon,
   });
 // 70 122
   @override
@@ -75,10 +77,15 @@ class CustomTextfeild extends StatelessWidget {
                       icon: Icon(icon),
                     )
                   : null,
-
+              suffixIcon: suffixIcon != null
+                  ? IconButton(
+                      onPressed: iconontap,
+                      icon: Icon(icon),
+                    )
+                  : null,
               enabledBorder: isenabledBorder == true
                   ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(17),
                       borderSide: BorderSide(
                         width: 1.2,
                         style: isBoarder ?? BorderStyle.solid,
@@ -86,7 +93,7 @@ class CustomTextfeild extends StatelessWidget {
                       ), //<-- SEE HERE
                     )
                   : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(17),
                       borderSide: BorderSide(
                         width: 0,
                         // style: BorderStyle.none,
@@ -94,7 +101,7 @@ class CustomTextfeild extends StatelessWidget {
                       ), //<-- SEE HERE
                     ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(17),
                 borderSide: BorderSide(
                   width: 1.2,
                   // style: BorderStyle.none,
@@ -104,7 +111,8 @@ class CustomTextfeild extends StatelessWidget {
 
               //  enabled: true,
               filled: true,
-              fillColor: fillColor ?? ColorManager.grey2.withOpacity(0.7),
+              fillColor:
+                  fillColor ?? ColorManager.textfieldColor.withOpacity(0.2),
               hintText: titel,
               hintStyle: MangeStyles().getLightStyle(
                 color: ColorManager.ktextblackk,

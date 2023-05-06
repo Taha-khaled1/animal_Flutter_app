@@ -31,6 +31,7 @@ class ColorManager {
   static Color controlercolor = Color(0xff385CAD);
   // //------------------------------------------------------------------------
   static Color containacolor1 = Color(0xff1817b3);
+  static Color textfieldColor = Color(0xff1BBCB6);
   static Color containacolor2 = Color(0xff709AFF);
   static Color containacolor3 = Color(0xff223f5d);
 
