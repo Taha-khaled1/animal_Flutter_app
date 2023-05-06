@@ -2,10 +2,14 @@ import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
-import 'package:animal_app/presentation_layer/screen/homescreen/widget/Small_Circal.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/home_screen.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/ProductWidget.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
+import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
+import 'package:animal_app/presentation_layer/screen/product_detalis/widget/ImageWithBackButton.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductDetalis extends StatelessWidget {
   const ProductDetalis({super.key});
@@ -13,24 +17,13 @@ class ProductDetalis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bottomNavigationBar: Example(),
       backgroundColor: ColorManager.background,
       body: Container(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                height: 320,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: ColorManager.background,
-                ),
-                child: Image.asset(
-                  'assets/images/catbag.png',
-                  fit: BoxFit.contain,
-                  height: 200,
-                ),
-              ),
+              ImageWithBackButton(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
@@ -123,6 +116,26 @@ class ProductDetalis extends StatelessWidget {
                     return CatogeryCard();
                   },
                 ),
+              ),
+              Titelmore(
+                text1: 'تسوق منتجاتنا',
+                text2: 'المزيد',
+                onTap: () {
+                  Get.to(() => MoreProductScreen());
+                },
+              ),
+              SizedBox(
+                height: 270,
+                child: ListView.builder(
+                  itemCount: 8,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return ProductWidget(image: 'assets/images/image 21.png');
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 15,
               ),
             ],
           ),

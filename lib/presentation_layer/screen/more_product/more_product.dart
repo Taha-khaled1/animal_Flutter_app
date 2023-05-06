@@ -1,6 +1,7 @@
 import 'package:animal_app/presentation_layer/Infowidget/models/device_info.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/ProductWidget.dart';
 import 'package:animal_app/presentation_layer/screen/more_product/more_product_controller/more_product_controller.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
