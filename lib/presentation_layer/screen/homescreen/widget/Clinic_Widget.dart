@@ -2,6 +2,7 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Small_Circal.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/TimeWithHistory.dart';
 import 'package:flutter/material.dart';
 
 class ClinicWidget extends StatelessWidget {
@@ -69,45 +70,7 @@ class ClinicWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    SmallCircal(
-                      color: Color(0xffF89D3D),
-                      iconData: Icon(
-                        Icons.star,
-                        size: 20,
-                        color: Color.fromARGB(255, 209, 192, 45),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      '4.8',
-                      style: MangeStyles().getMediumStyle(
-                        color: ColorManager.ktextblackk,
-                        fontSize: FontSize.s14,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    SmallCircal(
-                      color: Color.fromARGB(255, 175, 244, 192),
-                      image: 'assets/images/saaa.png',
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      '01:00 - 08:00 PM',
-                      style: MangeStyles().getMediumStyle(
-                        color: ColorManager.ktextblackk,
-                        fontSize: FontSize.s14,
-                      ),
-                    ),
-                  ],
-                ),
+                TimeWithReviwe(reviwe: '4.8', time: '01:00 - 08:00 PM'),
               ],
             ),
           )

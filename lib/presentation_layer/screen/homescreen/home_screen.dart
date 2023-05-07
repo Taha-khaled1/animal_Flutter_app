@@ -9,6 +9,7 @@ import 'package:animal_app/presentation_layer/screen/homescreen/widget/ProductWi
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/SearchHome.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/widget/groomingWidget.dart';
 import 'package:animal_app/presentation_layer/screen/more_catogery/morecatogeryscreen.dart';
 import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
 import 'package:animal_app/presentation_layer/screen/notfiction_screen/notfiction_screen.dart';
@@ -129,6 +130,21 @@ class HomeScreen extends StatelessWidget {
                   height: 10,
                 ),
                 Titelmore(
+                  text1: 'عيادات بيطرية',
+                  text2: 'المزيد',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: 140,
+                  child: ListView.builder(
+                    itemCount: 8,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return ClinicWidget();
+                    },
+                  ),
+                ),
+                Titelmore(
                   text1: 'خدمات',
                   text2: 'المزيد',
                   onTap: () {
@@ -145,24 +161,9 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Titelmore(
-                  text1: 'عيادات بيطرية',
-                  text2: 'المزيد',
-                  onTap: () {},
-                ),
-                SizedBox(
-                  height: 140,
-                  child: ListView.builder(
-                    itemCount: 8,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return ClinicWidget();
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 25,
-                ),
+                // SizedBox(
+                //   height: 10,
+                // ),
                 Titelmore(
                   text1: 'الاقسام',
                   text2: 'المزيد',
@@ -181,6 +182,27 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 25,
                 ),
+
+                Titelmore(
+                  text1: 'خدمات الاستمالة',
+                  text2: 'المزيد',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: 8,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GroomingWidget();
+                    },
+                  ),
+                ),
+
+                SizedBox(
+                  height: 25,
+                ),
+
                 Titelmore(
                   text1: 'الحيوانات الاكثر شعبيا',
                   text2: 'المزيد',
