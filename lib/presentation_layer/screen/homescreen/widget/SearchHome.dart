@@ -15,7 +15,7 @@ class SearchHome extends StatelessWidget {
       builder: (context, deviceInfo) {
         return Container(
           margin: EdgeInsets.symmetric(
-              vertical: 10, horizontal: deviceInfo.localWidth * 0.05),
+              vertical: 8, horizontal: deviceInfo.localWidth * 0.05),
           decoration: BoxDecoration(
             border: Border.all(color: ColorManager.kPrimary, width: 1.5),
             color: ColorManager.background,
@@ -31,7 +31,7 @@ class SearchHome extends StatelessWidget {
             ],
           ),
           child: TextFormField(
-            style: TextStyle(color: ColorManager.kTextblack, fontSize: 12),
+            style: TextStyle(color: ColorManager.white, fontSize: 14),
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),

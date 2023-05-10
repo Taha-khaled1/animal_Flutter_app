@@ -18,7 +18,11 @@ class MoreCatogeryScreen extends StatelessWidget {
           child: Wrap(
             alignment: WrapAlignment.start,
             children: [
-              for (int i = 0; i < 15; i++) CatogeryCard(),
+              for (int i = 0; i < 15; i++)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CatogeryCard(),
+                ),
             ],
           ),
         ),
