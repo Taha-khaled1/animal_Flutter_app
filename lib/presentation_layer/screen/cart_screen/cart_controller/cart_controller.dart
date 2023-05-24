@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:quickalert/quickalert.dart';
 
-import '../../../data_layer/models/carttest.dart';
+import '../../../../data_layer/models/carttest.dart';
 
 class CartController extends GetxController {
   double totelPrice = 0;

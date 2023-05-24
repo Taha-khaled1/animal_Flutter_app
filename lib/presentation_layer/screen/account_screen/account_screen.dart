@@ -10,7 +10,7 @@ import 'package:animal_app/presentation_layer/screen/edit_profile_screen/edit_pr
 import 'package:animal_app/presentation_layer/screen/screenseting/aboutpage.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/sharescreen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/terms.dart';
-import 'package:animal_app/presentation_layer/support_screen/support_problem_account_screen.dart';
+import 'package:animal_app/presentation_layer/screen/support_screen/support_problem_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

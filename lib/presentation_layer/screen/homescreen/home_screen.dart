@@ -1,4 +1,4 @@
-import 'package:animal_app/presentation_layer/cart_screen/cart_screen.dart';
+import 'package:animal_app/presentation_layer/screen/cart_screen/cart_screen.dart';
 import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';

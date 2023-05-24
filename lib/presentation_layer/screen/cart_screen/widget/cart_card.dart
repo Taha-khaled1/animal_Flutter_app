@@ -1,5 +1,5 @@
 import 'package:animal_app/data_layer/models/carttest.dart';
-import 'package:animal_app/presentation_layer/cart_screen/cart_controller/cart_controller.dart';
+import 'package:animal_app/presentation_layer/screen/cart_screen/cart_controller/cart_controller.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';

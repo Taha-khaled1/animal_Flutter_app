@@ -13,8 +13,8 @@ import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Login_Screen extends StatelessWidget {
-  const Login_Screen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,7 +120,7 @@ class Login_Screen extends StatelessWidget {
                     text1: 'ليس لديك حساب؟',
                     text2: 'اشتراك',
                     onTap: () {
-                      Get.to(() => SiginUp_Screen());
+                      Get.to(() => SiginupScreen());
                     },
                   ),
                 ],

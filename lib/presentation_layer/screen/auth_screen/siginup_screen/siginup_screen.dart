@@ -5,14 +5,13 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/widget/AccpetPrivecy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../login_screen/login_screen.dart';
-
-class SiginUp_Screen extends StatelessWidget {
-  const SiginUp_Screen({Key? key}) : super(key: key);
+class SiginupScreen extends StatelessWidget {
+  const SiginupScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +103,7 @@ class SiginUp_Screen extends StatelessWidget {
                     text1: 'امتلك  حساب؟',
                     text2: 'تسجيل الدخول',
                     onTap: () {
-                      Get.to(() => Login_Screen());
+                      Get.to(() => LoginScreen());
                     },
                   ),
                 ],

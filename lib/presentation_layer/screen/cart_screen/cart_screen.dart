@@ -1,7 +1,7 @@
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
-import 'package:animal_app/presentation_layer/cart_screen/cart_controller/cart_controller.dart';
-import 'package:animal_app/presentation_layer/cart_screen/widget/cart_card.dart';
-import 'package:animal_app/presentation_layer/cart_screen/widget/final_price.dart';
+import 'package:animal_app/presentation_layer/screen/cart_screen/cart_controller/cart_controller.dart';
+import 'package:animal_app/presentation_layer/screen/cart_screen/widget/cart_card.dart';
+import 'package:animal_app/presentation_layer/screen/cart_screen/widget/final_price.dart';
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
@@ -10,7 +10,7 @@ import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data_layer/models/carttest.dart';
+import '../../../data_layer/models/carttest.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

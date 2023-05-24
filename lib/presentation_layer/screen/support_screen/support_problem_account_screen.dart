@@ -3,12 +3,12 @@ import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widg
 import 'package:animal_app/presentation_layer/components/customtextfild.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
-import 'package:animal_app/presentation_layer/support_screen/support_controller/support_controller.dart';
+import 'package:animal_app/presentation_layer/screen/support_screen/support_controller/support_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../resources/font_manager.dart';
+import '../../resources/font_manager.dart';
 
 class SupportProblemScreen extends StatelessWidget {
   const SupportProblemScreen({super.key});

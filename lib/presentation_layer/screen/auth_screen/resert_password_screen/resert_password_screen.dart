@@ -4,8 +4,8 @@ import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/customtextfild.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
-import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/siginup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,7 +74,9 @@ class ResertPasswordScreen extends StatelessWidget {
                     haigh: 60,
                     color: ColorManager.kPrimary,
                     text: 'تسجيل الدخول',
-                    press: () {},
+                    press: () {
+                      Get.to(() => LoginScreen());
+                    },
                   ),
                   SizedBox(
                     height: 15,
@@ -83,7 +85,7 @@ class ResertPasswordScreen extends StatelessWidget {
                     text1: 'ليس لديك حساب؟',
                     text2: 'اشتراك',
                     onTap: () {
-                      Get.to(() => SiginUp_Screen());
+                      Get.to(() => SiginupScreen());
                     },
                   ),
                 ],
