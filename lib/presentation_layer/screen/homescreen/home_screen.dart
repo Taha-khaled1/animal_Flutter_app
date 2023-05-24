@@ -1,8 +1,8 @@
-import 'package:animal_app/presentation_layer/screen/cart_screen/cart_screen.dart';
-import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/screen/cart_screen/cart_screen.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/home_controlller/home_controlller.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/CatogerySmall.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Clinic_Widget.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/ProductWidget.dart';
@@ -13,28 +13,18 @@ import 'package:animal_app/presentation_layer/screen/homescreen/widget/groomingW
 import 'package:animal_app/presentation_layer/screen/more_catogery/morecatogeryscreen.dart';
 import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
 import 'package:animal_app/presentation_layer/screen/notfiction_screen/notfiction_screen.dart';
-import 'package:animal_app/presentation_layer/screen/product_detalis/product_detalis_screen.dart';
+import 'package:animal_app/presentation_layer/screen/src/custom_import.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-List<Widget> ximageoffer = [
-  Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(25),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: Image.asset('assets/images/offer.png'),
-    ),
-  ),
-];
-
+//import 'package:animal_app/presentation_layer/screen/src/custom_import.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    HomeController homeController = Get.put(HomeController());
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
@@ -98,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: CarouselSlider(
-                    items: ximageoffer,
+                    items: homeController.ximageoffer,
                     options: CarouselOptions(
                       height: 400,
                       aspectRatio: 16 / 9,

@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:path/path.dart';
-import 'package:animal_app/application_layer/ShardFunction/checkenternet.dart';
-import 'package:animal_app/application_layer/ShardFunction/statusrequst.dart';
+import 'package:animal_app/application_layer/utils/checkenternet.dart';
+import 'package:animal_app/application_layer/utils/statusrequst.dart';
 import 'package:animal_app/main.dart';
 
 // headers: <String, String>{'Content-Type': 'application/json'},

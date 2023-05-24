@@ -1,5 +1,5 @@
-import 'package:animal_app/application_layer/ShardFunction/statusrequst.dart';
-import 'package:animal_app/application_layer/ShardFunction/valid.dart';
+import 'package:animal_app/application_layer/utils/statusrequst.dart';
+import 'package:animal_app/application_layer/utils/valid.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/components/custombutten.dart';

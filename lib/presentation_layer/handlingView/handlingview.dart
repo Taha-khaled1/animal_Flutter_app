@@ -2,7 +2,7 @@ import 'package:animal_app/presentation_layer/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../application_layer/ShardFunction/statusrequst.dart';
+import '../../application_layer/utils/statusrequst.dart';
 
 class HandlingDataView extends StatelessWidget {
   final StatusRequest statusRequest;

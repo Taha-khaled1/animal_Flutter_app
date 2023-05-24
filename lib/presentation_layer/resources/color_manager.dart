@@ -27,7 +27,7 @@ class ColorManager {
   // static Color white =  Color(0xffFFFFFF);
   // static Color navbar =  Color(0xffC0C0C0);
   // static Color ktextlabny =  Color(0xff3AB0FF);
-  static Color error = Color(0xffe61f34); // red color
+  static Color error = Color(0xffe61f34);
   static Color controlercolor = Color(0xff385CAD);
   // //------------------------------------------------------------------------
   static Color containacolor1 = Color(0xff1817b3);
