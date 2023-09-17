@@ -6,8 +6,8 @@ class APiMange {
   static const String services = "$baseurl/service";
   static const String categorys = "$baseurl/category";
   static const String homePage = "$baseurl/home";
-  static const String forcountry = "$baseurl/forcountry";
-  static const String search = "$baseurl/searchnameorcountrey?search";
+  static const String singleServices = "$baseurl/service";
+  static const String singleProduct = "$baseurl/product";
   static const String filterdata = "$baseurl/filterdata";
   static const String catogerydata = "$baseurl/catogerydata";
   static const String propertydetalis = "$baseurl/propertydetalis";

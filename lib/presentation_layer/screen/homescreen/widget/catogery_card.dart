@@ -7,20 +7,27 @@ import 'package:animal_app/presentation_layer/utlis/image_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../main.dart';
+
 class CatogeryCard extends StatelessWidget {
   const CatogeryCard({
     Key? key,
     this.name,
     this.image,
+    this.id,
   }) : super(key: key);
-  final String? name, image;
+  final String? name, image, id;
 
   // final CatogeryData? catogeryData;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ServiceDetalis());
+        if (id != null) {
+          sharedPreferences.setInt("s_id", int.parse(id!));
+          Get.to(() => ServiceDetalis());
+        }
+
         // Get.toNamed(
         //   Routes.moreproduct,
         //   arguments: [catogeryData!.id ?? 6],

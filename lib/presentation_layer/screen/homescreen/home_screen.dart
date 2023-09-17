@@ -153,6 +153,9 @@ class HomeScreen extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 return CatogeryCard(
+                                  id: homeController
+                                      .homeModel!.data?.services?[index].id
+                                      .toString(),
                                   image: homeController.homeModel!.data
                                       ?.services?[index].imageUrl,
                                   name: translation(
@@ -226,7 +229,7 @@ class HomeScreen extends StatelessWidget {
                           ),
 
                           Titelmore(
-                            text1: 'الحيوانات الاكثر شعبيا',
+                            text1: 'تسوق منتجاتنا',
                             text2: 'المزيد',
                             onTap: () {
                               Get.to(() => MoreProductScreen());
@@ -267,8 +270,9 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             height: 25,
                           ),
+
                           Titelmore(
-                            text1: 'تسوق منتجاتنا',
+                            text1: 'الحيوانات الاكثر شعبيا',
                             text2: 'المزيد',
                             onTap: () {
                               Get.to(() => MoreProductScreen());

@@ -24,7 +24,7 @@ class ShimmerLayout extends StatelessWidget {
 
             Row(
               children: [
-                for (var i = 0; i < 5; i++)
+                for (var i = 0; i < 3; i++)
                   Padding(
                     padding: const EdgeInsets.only(right: 10, left: 6),
                     child: Column(

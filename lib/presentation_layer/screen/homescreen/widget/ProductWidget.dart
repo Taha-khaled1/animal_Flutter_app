@@ -1,4 +1,5 @@
 import 'package:animal_app/data_layer/models/favorite_model.dart';
+import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
@@ -24,7 +25,10 @@ class ProductWidget extends StatelessWidget {
     print(image.toString());
     return InkWell(
       onTap: () {
-        Get.to(() => ProductDetalis());
+        if (id != null) {
+          sharedPreferences.setInt("p_id", int.parse(id!));
+          Get.to(() => ProductDetalis());
+        }
       },
       child: Container(
         width: 200,

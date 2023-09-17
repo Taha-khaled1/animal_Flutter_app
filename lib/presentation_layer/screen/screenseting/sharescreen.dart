@@ -4,6 +4,7 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 
 import 'package:share_plus/share_plus.dart';
 
@@ -26,7 +27,7 @@ class ShareApp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                appbarscreen('مشاركة التطبيق'),
+                appbarscreen(AppStrings.share_app.tr),
                 SizedBox(
                   height: 45,
                 ),
@@ -36,7 +37,7 @@ class ShareApp extends StatelessWidget {
                   width: deviceInfo.localWidth * 0.95,
                 ),
                 Text(
-                  "مشاركة التطبيق",
+                  AppStrings.share_app.tr,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 12),
@@ -54,7 +55,7 @@ class ShareApp extends StatelessWidget {
                         final box = context.findRenderObject() as RenderBox?;
 
                         await Share.share(
-                          'Nts.com',
+                          AppStrings.share_app.tr,
                           sharePositionOrigin:
                               box!.localToGlobal(Offset.zero) & box.size,
                         );
@@ -64,7 +65,7 @@ class ShareApp extends StatelessWidget {
                       }
                     },
                     icon: const Icon(Icons.share),
-                    label: Text('مشاركة التطبيق'),
+                    label: Text(AppStrings.share_app.tr),
                   ),
                 ),
               ],

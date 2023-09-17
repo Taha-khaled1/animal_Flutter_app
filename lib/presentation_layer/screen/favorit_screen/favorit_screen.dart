@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../main.dart';
+import '../../utlis/translate.dart';
 import 'favorit_controller.dart';
 
 class FavoritScreen extends StatelessWidget {
@@ -51,21 +52,15 @@ class FavoritScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(height: 16),
-                              sharedPreferences.getString('lang') == 'ar'
-                                  ? Text(
-                                      snapshot.data?[index]['title'] ?? "",
-                                      style: MangeStyles().getBoldStyle(
-                                        color: ColorManager.ktextblackk,
-                                        fontSize: FontSize.s18,
-                                      ),
-                                    )
-                                  : Text(
-                                      snapshot.data?[index]['titleEn'] ?? "",
-                                      style: MangeStyles().getBoldStyle(
-                                        color: ColorManager.ktextblackk,
-                                        fontSize: FontSize.s18,
-                                      ),
-                                    ),
+                              Text(
+                                translation(
+                                    ar: snapshot.data?[index]['title'] ?? "",
+                                    en: snapshot.data?[index]['titleEn'] ?? ""),
+                                style: MangeStyles().getBoldStyle(
+                                  color: ColorManager.ktextblackk,
+                                  fontSize: FontSize.s18,
+                                ),
+                              ),
                               const SizedBox(height: 1),
                               Text(
                                 'افحص التافصيل',

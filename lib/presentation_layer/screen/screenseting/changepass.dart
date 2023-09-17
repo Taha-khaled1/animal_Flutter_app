@@ -6,7 +6,6 @@ import 'package:animal_app/presentation_layer/screen/screenseting/changcontrolle
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
-
 import '../../resources/font_manager.dart';
 import '../../resources/styles_manager.dart';
 

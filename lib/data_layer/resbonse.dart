@@ -28,3 +28,21 @@ dynamic getHome() async {
 
   return respons;
 }
+
+dynamic getSingleServices(int id) async {
+  Curd curd = Curd();
+  var respons = await curd.getrequest(
+    "${APiMange.singleServices}/$id",
+  );
+
+  return respons;
+}
+
+dynamic getSingleProduct(int id) async {
+  Curd curd = Curd();
+  var respons = await curd.getrequest(
+    "${APiMange.singleProduct}/$id",
+  );
+
+  return respons;
+}

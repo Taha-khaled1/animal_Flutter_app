@@ -33,6 +33,8 @@ class MoreCatogeryScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CatogeryCard(
+                              id: _.serviceModel!.serviceCardModel?[i].id
+                                  .toString(),
                               image:
                                   _.serviceModel!.serviceCardModel?[i].imageUrl,
                               name: translation(
