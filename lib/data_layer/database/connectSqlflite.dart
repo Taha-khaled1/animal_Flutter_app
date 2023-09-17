@@ -34,23 +34,25 @@ class SqlDb {
     batch.execute(
         '''
     CREATE TABLE favorite (
-    "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
-    "isfavorit" INTEGER NULL,
+    "id" INTEGER  NOT NULL PRIMARY KEY,
     "title" TEXT(500),
-    "image" TEXT(500),
-    "descr" TEXT(5000),
-    "price" TEXT(500)
+    "titleEn" TEXT(500),
+    "des" TEXT(500),
+    "price" INTEGER(11),
+    "image" TEXT(500)
 );
  ''');
     batch.execute(
         '''
     CREATE TABLE cart (
-    "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
-    "itemsId" INTEGER NULL,
+    "id" INTEGER  NOT NULL PRIMARY KEY,
     "itemsName" TEXT(255),
-    "itemsPrice" TEXT(255),
+    "itemsNameEn" TEXT(255),
+    "itemsPrice" INTEGER(11),
     "itemsImage" TEXT(255),
-    "itemsDiscount" TEXT(255)
+    "des" TEXT(500),
+    "quntity" INTEGER(11)
+
 );
  ''');
     // print(" onCreate =====================================");
@@ -120,6 +122,7 @@ class SqlDb {
     String databasepath = await getDatabasesPath();
     String path = join(databasepath, 'ecommerce.db');
     await deleteDatabase(path);
+    print('done delete');
   }
 }
 ////لو عاوز اضيف بينات في الحقول اللي عندي 

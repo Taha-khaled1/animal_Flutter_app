@@ -5,11 +5,15 @@ import 'package:animal_app/presentation_layer/screen/more_product/more_product.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../utlis/image_checker.dart';
+
 class CatogerySmall extends StatelessWidget {
   const CatogerySmall({
-    super.key,
-  });
-
+    Key? key,
+    this.name,
+    this.image,
+  }) : super(key: key);
+  final String? name, image;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -27,15 +31,16 @@ class CatogerySmall extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: ColorManager.kPrimary),
             ),
-            child: Image.asset(
-              'assets/images/cat.png',
-              width: 100,
+            child: Image.network(
+              imageNetworkCheck(image),
+              width: 120,
               height: 100,
+              fit: BoxFit.fill,
             ),
           ),
           SizedBox(height: 10),
           Text(
-            'Cat',
+            '$name',
             style: MangeStyles().getMediumStyle(
               color: ColorManager.kPrimary2,
               fontSize: FontSize.s16,

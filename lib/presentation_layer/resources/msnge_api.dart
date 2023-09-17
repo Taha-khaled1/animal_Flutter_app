@@ -1,11 +1,11 @@
 class APiMange {
   // static const String baseurl = "http://127.0.0.1:8000/api";
   // static const String baseurlImage = "http://127.0.0.1:8000";
-  static const String baseurl = "https://blossomblue.realestate/public/api";
-  static const String baseurlImage = "https://blossomblue.realestate/public";
-  static const String newproperty = "$baseurl/newproperty";
-  static const String recommendhotel = "$baseurl/recommendhotel";
-  static const String mostview = "$baseurl/mostview";
+  static const String baseurl = "https://elegantae.net/api";
+  static const String baseurlImage = "https://elegantae.net";
+  static const String services = "$baseurl/service";
+  static const String categorys = "$baseurl/category";
+  static const String homePage = "$baseurl/home";
   static const String forcountry = "$baseurl/forcountry";
   static const String search = "$baseurl/searchnameorcountrey?search";
   static const String filterdata = "$baseurl/filterdata";

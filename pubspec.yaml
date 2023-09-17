@@ -59,6 +59,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.4.54
   day_night_time_picker: ^1.2.0+2
   pinput: ^2.2.31
+  shimmer: ^3.0.0
+  cached_network_image: ^3.2.3
 
   
 dev_dependencies:

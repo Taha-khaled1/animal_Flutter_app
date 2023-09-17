@@ -1,18 +1,27 @@
+import 'package:animal_app/data_layer/models/favorite_model.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/screen/homescreen/home_controlller/home_controlller.dart';
 import 'package:animal_app/presentation_layer/screen/product_detalis/product_detalis_screen.dart';
+import 'package:animal_app/presentation_layer/utlis/image_checker.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductWidget extends StatelessWidget {
   const ProductWidget({
     super.key,
-    required this.image,
+    this.image,
+    this.name,
+    this.price,
+    this.id,
   });
-  final String image;
+  final String? image, name, price, id;
   @override
   Widget build(BuildContext context) {
+    HomeController homeController = Get.find();
+    print(image.toString());
     return InkWell(
       onTap: () {
         Get.to(() => ProductDetalis());
@@ -34,17 +43,48 @@ class ProductWidget extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Image.asset(image),
+                if (image != "assets/images/image 21.png")
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      // bottomLeft: Radius.circular(30),
+                      // bottomRight: Radius.circular(30),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(10),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: imageNetworkCheck(image),
+                      fit: BoxFit.fill,
+                      imageBuilder: (context, imageProvider) => Container(
+                        width: 200,
+                        height: 156,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                // if (image != "assets/images/image 21.png")
+                //   Image.network(
+                //     imageNetworkCheck(image),
+                //     width: 100,
+                //     height: 100,
+                //   ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  'بريطاني قصير الشعر',
+                  '$name',
                   style: MangeStyles().getMediumStyle(
                     color: ColorManager.ktextblackk,
                     fontSize: FontSize.s16,
@@ -54,7 +94,7 @@ class ProductWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '\$199',
+                  '\$$price',
                   style: MangeStyles().getMediumStyle(
                     color: ColorManager.kPrimary2,
                     fontSize: FontSize.s16,
@@ -65,22 +105,62 @@ class ProductWidget extends StatelessWidget {
             Positioned(
               top: 0,
               right: 0,
-              child: Container(
-                height: 55,
-                width: 45,
-                decoration: BoxDecoration(
-                  color: ColorManager.kPrimary,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    topLeft: Radius.circular(5),
-                    topRight: Radius.circular(5),
-                    //  bottomRight: Radius.circular(10),
+              child: GestureDetector(
+                onTap: () {
+                  //int.parse(id ?? "0")
+                  FavoritModel favoritModel = FavoritModel(
+                    id: int.parse(id ?? "0"),
+                    des: '',
+                    price: double.parse(price ?? "50.0"),
+                    titleEn: name ?? '',
+                    title: name ?? '',
+                    image: image ?? '',
+                  );
+                  homeController.addfavorite(context, favoritModel);
+                  print("finish");
+                },
+                child: Container(
+                  height: 55,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    color: ColorManager.kPrimary,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5),
+                      //  bottomRight: Radius.circular(10),
+                    ),
                   ),
-                ),
-                child: Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
-                  size: 30,
+                  child: FutureBuilder<bool>(
+                    future: homeController
+                        .isProductInFavorites(int.parse(id ?? "0")),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        // Future is still loading, return a placeholder widget or loading indicator
+                        return CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        // An error occurred while fetching the favorite status
+                        return Text('Error: ${snapshot.error}');
+                      } else {
+                        // Favorite status is available
+                        bool favorite = snapshot.data ??
+                            false; // Use a default value if data is null
+
+                        return favorite
+                            ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                                size: 32,
+                              )
+                            : Icon(
+                                Icons.favorite_border_outlined,
+                                size: 32,
+                                color: Colors.white,
+                              );
+                      }
+                    },
+                  ),
                 ),
               ),
             )

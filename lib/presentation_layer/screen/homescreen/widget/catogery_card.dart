@@ -3,13 +3,18 @@ import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/routes_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/service_detalis/service_detalis_screen.dart';
+import 'package:animal_app/presentation_layer/utlis/image_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CatogeryCard extends StatelessWidget {
   const CatogeryCard({
     Key? key,
+    this.name,
+    this.image,
   }) : super(key: key);
+  final String? name, image;
+
   // final CatogeryData? catogeryData;
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class CatogeryCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 40,
-              backgroundImage: AssetImage('assets/images/unsplash.png'),
+              backgroundImage: NetworkImage(imageNetworkCheck(image)),
               // child: Image.asset(
               //   'assets/images/unsplash.png',
               //   fit: BoxFit.cover,
@@ -48,7 +53,7 @@ class CatogeryCard extends StatelessWidget {
             SizedBox(
               height: 30,
               child: Text(
-                'حلاقة شعر',
+                '$name',
                 textAlign: TextAlign.center,
                 style: MangeStyles().getBoldStyle(
                   color: ColorManager.ktextblackk,
