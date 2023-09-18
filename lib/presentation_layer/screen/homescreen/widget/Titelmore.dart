@@ -23,19 +23,22 @@ class Titelmore extends StatelessWidget {
             text1,
             style: MangeStyles().getBoldStyle(
               color: ColorManager.kPrimary2,
-              fontSize: FontSize.s18,
+              fontSize: FontSize.s16,
             ),
           ),
-          InkWell(
-            onTap: onTap,
-            child: Text(
-              text2,
-              style: MangeStyles().getMediumStyle(
-                color: ColorManager.kPrimary2,
-                fontSize: FontSize.s16,
-              ),
-            ),
-          ),
+          SizedBox(
+            height: 5,
+          )
+          // InkWell(
+          //   onTap: onTap,
+          //   child: Text(
+          //     text2,
+          //     style: MangeStyles().getMediumStyle(
+          //       color: ColorManager.kPrimary2,
+          //       fontSize: FontSize.s16,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

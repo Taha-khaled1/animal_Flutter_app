@@ -74,7 +74,9 @@ class HomeScreen extends StatelessWidget {
                           SearchHome(),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 13, vertical: 0),
+                              horizontal: 13,
+                              vertical: 0,
+                            ),
                             child: Text(
                               'العروض',
                               style: MangeStyles().getBoldStyle(

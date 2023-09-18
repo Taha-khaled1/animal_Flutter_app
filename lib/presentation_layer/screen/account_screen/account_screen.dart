@@ -8,6 +8,7 @@ import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/widget/customListtile.dart';
 import 'package:animal_app/presentation_layer/screen/edit_profile_screen/edit_profile_screen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/aboutpage.dart';
+import 'package:animal_app/presentation_layer/screen/screenseting/privacy_policy.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/sharescreen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/terms.dart';
 import 'package:animal_app/presentation_layer/screen/support_screen/support_problem_account_screen.dart';
@@ -50,7 +51,7 @@ class AccountScreen extends StatelessWidget {
                   widget: Icon(Icons.privacy_tip_outlined),
                   titel: 'سياسة الخصوصيه',
                   onTap: () {
-                    // Get.to(page);
+                    Get.to(PrivacyPolicy());
                   },
                 ),
                 CustomListtile(
@@ -87,13 +88,13 @@ class AccountScreen extends StatelessWidget {
                     );
                   },
                 ),
-                CustomListtile(
-                  widget: Icon(Icons.info_outline),
-                  titel: 'معلومات عنا',
-                  onTap: () {
-                    Get.to(AboutPage());
-                  },
-                ),
+                // CustomListtile(
+                //   widget: Icon(Icons.info_outline),
+                //   titel: 'معلومات عنا',
+                //   onTap: () {
+                //     Get.to(AboutPage());
+                //   },
+                // ),
                 SizedBox(
                   height: 40,
                 ),

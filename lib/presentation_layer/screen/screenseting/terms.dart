@@ -4,24 +4,43 @@ import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class TermsAndConditionsPage extends StatelessWidget {
+class TermsAndConditionsPage extends StatefulWidget {
+  @override
+  State<TermsAndConditionsPage> createState() => _TermsAndConditionsPageState();
+}
+
+class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
+  var controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setBackgroundColor(const Color(0x00000000))
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          // Update loading bar.
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onWebResourceError: (WebResourceError error) {},
+        // onNavigationRequest: (NavigationRequest request) {
+        //   if (request.url.startsWith('https://www.youtube.com/')) {
+        //     return NavigationDecision.prevent;
+        //   }
+        //   return NavigationDecision.navigate;
+        // },
+      ),
+    )
+    ..loadRequest(Uri.parse(
+        'https://portfolio-b0317.web.app/elegent-pet-care/terms-app.html'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.background,
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            appbarscreen(AppStrings.terms_and_conditions.tr),
-            SingleChildScrollView(
-              child: Html(
-                data: AppStrings.term_content.tr,
-              ),
-            ),
-          ],
-        ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.teal,
       ),
+      body: WebViewWidget(controller: controller),
     );
   }
 }

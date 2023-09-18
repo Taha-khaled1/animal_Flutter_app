@@ -2,6 +2,7 @@
     package="com.example.animal_app">
     <uses-permission android:name="android.permission.INTERNET" />
 
+
    <application
         android:label="Elegent Pet Care"
         android:name="${applicationName}"
