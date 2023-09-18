@@ -47,6 +47,8 @@ class HomeController extends GetxController {
     }
   }
 
+  // Add a product to the shopping cart.
+
   void addfavorite(BuildContext context, FavoritModel favoritModel) async {
     try {
       var isFavorite = await sqlDb!.readData(
@@ -69,6 +71,7 @@ class HomeController extends GetxController {
           'favorite',
           {
             'id': favoritModel.id,
+            'idProduct': favoritModel.id,
             "titleEn": favoritModel.titleEn,
             "des": favoritModel.des,
             "price": favoritModel.price,

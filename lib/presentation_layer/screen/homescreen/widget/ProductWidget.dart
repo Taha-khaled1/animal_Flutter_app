@@ -4,6 +4,7 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/home_controlller/home_controlller.dart';
+import 'package:animal_app/presentation_layer/screen/pet_detalis/pet_detalis_screen.dart';
 import 'package:animal_app/presentation_layer/screen/product_detalis/product_detalis_screen.dart';
 import 'package:animal_app/presentation_layer/utlis/image_checker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,17 +18,26 @@ class ProductWidget extends StatelessWidget {
     this.name,
     this.price,
     this.id,
+    required this.isProduct,
   });
   final String? image, name, price, id;
+  final bool isProduct;
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
     print(image.toString());
     return InkWell(
       onTap: () {
-        if (id != null) {
-          sharedPreferences.setInt("p_id", int.parse(id!));
-          Get.to(() => ProductDetalis());
+        if (isProduct) {
+          if (id != null) {
+            sharedPreferences.setInt("p_id", int.parse(id!));
+            Get.to(() => ProductDetalis());
+          }
+        } else {
+          if (id != null) {
+            sharedPreferences.setInt("a_id", int.parse(id!));
+            Get.to(() => PetDetalisScreen());
+          }
         }
       },
       child: Container(
@@ -113,7 +123,9 @@ class ProductWidget extends StatelessWidget {
                 onTap: () {
                   //int.parse(id ?? "0")
                   FavoritModel favoritModel = FavoritModel(
-                    id: int.parse(id ?? "0"),
+                    id: isProduct
+                        ? int.parse(id ?? "0") + 500
+                        : int.parse(id ?? "0") + 1000,
                     des: '',
                     price: double.parse(price ?? "50.0"),
                     titleEn: name ?? '',
@@ -136,8 +148,11 @@ class ProductWidget extends StatelessWidget {
                     ),
                   ),
                   child: FutureBuilder<bool>(
-                    future: homeController
-                        .isProductInFavorites(int.parse(id ?? "0")),
+                    future: homeController.isProductInFavorites(
+                      isProduct
+                          ? int.parse(id ?? "0") + 500
+                          : int.parse(id ?? "0") + 1000,
+                    ),
                     builder:
                         (BuildContext context, AsyncSnapshot<bool> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {

@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:animal_app/main.dart';
 import 'package:get/get.dart';
-
-import 'package:quickalert/quickalert.dart';
-
 import '../../../../data_layer/models/carttest.dart';
 
 class CartController extends GetxController {
@@ -12,74 +9,28 @@ class CartController extends GetxController {
   bool xtemp = false;
   bool ctemp = false;
   String deliveryType = '';
-
+  late bool isload;
   void updatePay(String value) {
     deliveryType = value;
     update();
   }
-  // CartListModels? cartListModels;
-  // List<CartItems> carModelsdemo = [];
 
-  // getCartList(int idCato) async {
-  //   carModelsdemo.clear();
-  //   totelPrice = 0;
-  //   totelTex = 0;
-  //   try {
-  //     var response = await getCartListRes(idCato);
+  List<CartItemModel> items = [];
 
-  //     for (var i = 0; i < response.length; i++) {
-  //       cartListModels = await CartListModels.fromJson(response[i]);
-  //       for (int q = 0; q < cartListModels!.cartItems!.length; q++) {
-  //         totelPrice += cartListModels!.cartItems![q].price!.toDouble() *
-  //             cartListModels!.cartItems![q].quantity!.toDouble();
-  //         totelTex += cartListModels!.cartItems![q].tax!.toDouble() *
-  //             cartListModels!.cartItems![q].quantity!.toDouble();
-  //         carModelsdemo.add(cartListModels!.cartItems![q]);
-  //       }
-  //     }
-  //     update();
-  //     return response;
-  //   } catch (e) {
-  //     print(' erorr catch $e');
-  //     return 'error';
-  //   }
-  // }
+  Future<void> getCartItemsRes() async {
+    List<Map<String, dynamic>> response = await sqlDb!.read('cart');
+    // Clear the current items list before adding new items.
+    items.clear();
 
-  // StatusRequest statusRequest = StatusRequest.none;
-  // deletecarts(BuildContext context, int id) async {
-  //   statusRequest = StatusRequest.loading;
-  //   update();
-
-  //   var respon = await deleteFromCartRespon(id);
-  //   statusRequest = handlingData(respon);
-  //   try {
-  //     if (StatusRequest.success == statusRequest) {
-  //       if (respon['result'].toString() == 'true') {
-  //         showDilog(context, 'تم حذف المنتج بنجاح');
-  //         carModelsdemo.removeWhere(
-  //           (element) => element.id == id,
-  //         );
-  //       } else {
-  //         showDilog(
-  //           context,
-  //           'لم يتم حذف المنج ربما يوجد خطاء',
-  //           type: QuickAlertType.info,
-  //         );
-  //       }
-  //     } else {
-  //       showDilog(context, 'يوجد مشكله ما', type: QuickAlertType.error);
-  //     }
-  //   } catch (e) {
-  //     print('catch $e');
-  //     showDilog(context, 'يوجد مشكله ما', type: QuickAlertType.error);
-  //   }
-
-  //   update();
-  // }
+    for (Map<String, dynamic> map in response) {
+      CartItemModel item = CartItemModel.fromMap(map);
+      items.add(item);
+    }
+  }
 
   icrasingCount(int index, double price) {
     count++;
-    cartItem[index].count++;
+    items[index].quantity++;
     totelPrice += price;
     update();
   }
@@ -87,43 +38,20 @@ class CartController extends GetxController {
   decrasingCount(int index, double price) {
     if (count > 1) {
       count--;
-      cartItem[index].count--;
+      items[index].quantity--;
       totelPrice -= price;
       update();
     }
   }
 
-  // StatusRequest statusRequest1 = StatusRequest.none;
-  // saveOrder(BuildContext context, String id) async {
-  //   statusRequest1 = StatusRequest.loading;
-  //   update();
-
-  //   var respon = await saveOrderRespon(id);
-  //   statusRequest1 = handlingData(respon);
-  //   try {
-  //     if (StatusRequest.success == statusRequest1) {
-  //       if (respon['result'].toString() == 'true') {
-  //         carModelsdemo.clear();
-  //         Get.offAndToNamed(Routes.sucssRoute);
-  //       } else {
-  //         showDilog(
-  //           context,
-  //           'عربة التسوق فارغه او الكميه غير متوفره',
-  //           type: QuickAlertType.info,
-  //         );
-  //       }
-  //     } else {
-  //       showDilog(
-  //         context,
-  //         'يوجد مشكله بحساب المستخد يرجي التواصل مع الدعم',
-  //         type: QuickAlertType.error,
-  //       );
-  //     }
-  //   } catch (e) {
-  //     print('catch $e');
-  //     showDilog(context, 'يوجد مشكله ما', type: QuickAlertType.error);
-  //   }
-
-  //   update();
-  // }
+  @override
+  void onInit() async {
+    isload = true;
+    update();
+    await getCartItemsRes();
+    print("=============================");
+    isload = false;
+    update();
+    super.onInit();
+  }
 }

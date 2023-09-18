@@ -31,10 +31,10 @@ class SqlDb {
     // طريقة الباتش هتكون افضل طريقه تجعلك تضيف اكتر من جدول او تعمل اكتر من عمليه ف نفس الوقت
     Batch batch = db.batch();
 
-    batch.execute(
-        '''
+    batch.execute('''
     CREATE TABLE favorite (
     "id" INTEGER  NOT NULL PRIMARY KEY,
+    "idProduct" INTEGER(11),
     "title" TEXT(500),
     "titleEn" TEXT(500),
     "des" TEXT(500),
@@ -42,15 +42,14 @@ class SqlDb {
     "image" TEXT(500)
 );
  ''');
-    batch.execute(
-        '''
+    batch.execute('''
     CREATE TABLE cart (
     "id" INTEGER  NOT NULL PRIMARY KEY,
+    "idProduct" INTEGER(11),
     "itemsName" TEXT(255),
     "itemsNameEn" TEXT(255),
     "itemsPrice" INTEGER(11),
     "itemsImage" TEXT(255),
-    "des" TEXT(500),
     "quntity" INTEGER(11)
 
 );

@@ -7,6 +7,7 @@ import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
+import 'package:animal_app/presentation_layer/screen/shimmer_screen/shimmer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,30 +18,37 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CartController controller = Get.put(CartController());
     return Scaffold(
       backgroundColor: ColorManager.background,
       appBar: appbarscreen('عربة التسوق'),
-      body: InfoWidget(
-        builder: (context, deviceInfo) {
-          return Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: cartItem.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CartCard(
-                      cart: cartItem[index],
-                      index: index,
+      body: GetBuilder<CartController>(
+        init: CartController(),
+        builder: (controller) {
+          return !controller.isload
+              ? InfoWidget(
+                  builder: (context, deviceInfo) {
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: controller.items.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return CartCard(
+                                cart: controller.items[index],
+                                index: index,
+                              );
+                            },
+                          ),
+                        ),
+                        BottomSection(
+                          width: deviceInfo.localWidth * 0.85,
+                        )
+                      ],
                     );
                   },
-                ),
-              ),
-              BottomSection(
-                width: deviceInfo.localWidth * 0.85,
-              )
-            ],
-          );
+                )
+              : ShimmerLayout();
+          ;
         },
       ),
     );

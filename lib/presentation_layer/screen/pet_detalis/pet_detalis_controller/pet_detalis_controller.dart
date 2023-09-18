@@ -6,11 +6,11 @@ import 'package:animal_app/main.dart';
 import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../../../data_layer/models/product_model.dart';
+import '../../../../data_layer/models/pet_model.dart';
 
-class ProductController extends GetxController {
+class PetController extends GetxController {
   late bool isload;
-  Product? product;
+  PetModel? pet;
   late StatusRequest statusRequest;
   Future<bool> isProductInFavorites(int productId) async {
     Database? mydb = await sqlDb!.db;
@@ -20,14 +20,14 @@ class ProductController extends GetxController {
     return result.isNotEmpty;
   }
 
-  getSingleProductsRes(int id) async {
+  getSinglePetRes(int id) async {
     try {
       statusRequest = StatusRequest.loading;
-      var response = await getSingleProduct(id);
+      var response = await getSinglePet(id);
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         print('----------------------------------');
-        product = await Product.fromJson(response);
+        pet = await PetModel.fromJson(response);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -63,7 +63,7 @@ class ProductController extends GetxController {
   void onInit() async {
     isload = true;
     update();
-    await getSingleProductsRes(sharedPreferences.getInt("p_id")!);
+    await getSinglePetRes(sharedPreferences.getInt("a_id")!);
     await getServicesRes();
     isload = false;
     update();

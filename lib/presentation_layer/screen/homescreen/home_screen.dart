@@ -246,6 +246,7 @@ class HomeScreen extends StatelessWidget {
                                   id: homeController
                                       .homeModel!.data?.products?[index].id
                                       .toString(),
+                                  isProduct: true,
                                   image:
                                       "https://elegantae.net/uploaded_files/product_image/${homeController.homeModel!.data?.products?[index].primaryImage}",
                                   name: translation(
@@ -286,8 +287,9 @@ class HomeScreen extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 return ProductWidget(
+                                  isProduct: false,
                                   id: homeController
-                                      .homeModel!.data?.products?[index].id
+                                      .homeModel!.data?.pets?[index].id
                                       .toString(),
                                   image:
                                       "${homeController.homeModel!.data?.pets?[index].featuredImage}",

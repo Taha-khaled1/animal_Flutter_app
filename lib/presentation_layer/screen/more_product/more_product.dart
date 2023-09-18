@@ -61,6 +61,7 @@ class MoreProductScreen extends StatelessWidget {
                               itemCount: 8,
                               itemBuilder: (BuildContext context, int index) {
                                 return ProductWidget(
+                                  isProduct: true,
                                   image: 'assets/images/image 22.png',
                                 );
                               },

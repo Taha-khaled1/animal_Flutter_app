@@ -15,18 +15,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
-import 'product_detalis_controller/product_detalis_controller.dart';
+import 'pet_detalis_controller/pet_detalis_controller.dart';
 
-class ProductDetalis extends StatelessWidget {
-  const ProductDetalis({super.key});
+class PetDetalisScreen extends StatelessWidget {
+  const PetDetalisScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // bottomNavigationBar: Example(),
       backgroundColor: ColorManager.background,
-      body: GetBuilder<ProductController>(
-        init: ProductController(),
+      body: GetBuilder<PetController>(
+        init: PetController(),
         builder: (controller) {
           return !controller.isload
               ? Container(
@@ -34,7 +34,8 @@ class ProductDetalis extends StatelessWidget {
                     child: Column(
                       children: [
                         ImageWithBackButton(
-                            image: controller.product?.data.primaryImageUrl),
+                          image: controller.pet?.data?.featuredImage,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Column(
@@ -50,11 +51,8 @@ class ProductDetalis extends StatelessWidget {
                                 children: [
                                   Text(
                                     translation(
-                                        ar: controller
-                                                .product?.data.frProductName ??
-                                            "",
-                                        en: controller
-                                                .product?.data.enProductName ??
+                                        ar: controller.pet?.data?.titleAr ?? "",
+                                        en: controller.pet?.data?.titleEn ??
                                             ""),
                                     style: MangeStyles().getBoldStyle(
                                       color: ColorManager.ktextblackk,
@@ -71,10 +69,10 @@ class ProductDetalis extends StatelessWidget {
                                     ),
                                     child: FutureBuilder<bool>(
                                       future: controller.isProductInFavorites(
-                                        int.parse(controller.product?.data.id
+                                        int.parse(controller.pet?.data?.id
                                                     .toString() ??
                                                 "0") +
-                                            500,
+                                            1000,
                                       ),
                                       builder: (BuildContext context,
                                           AsyncSnapshot<bool> snapshot) {
@@ -114,11 +112,9 @@ class ProductDetalis extends StatelessWidget {
                               ),
                               Html(
                                 data: translation(
-                                    ar: controller
-                                            .product?.data.frDescription ??
+                                    ar: controller.pet?.data?.descriptionAr ??
                                         "",
-                                    en: controller
-                                            .product?.data.enDescription ??
+                                    en: controller.pet?.data?.descriptionEn ??
                                         ""),
                               ),
                               // Text(
@@ -140,18 +136,19 @@ class ProductDetalis extends StatelessWidget {
                                     text: 'اضافة الي السله',
                                     press: () async {
                                       try {
+                                        print("============");
                                         int response =
                                             await controller.addToCart({
                                           'itemsName': controller
-                                              .product?.data.frProductName,
-                                          'idProduct':
-                                              controller.product?.data.id,
-                                          'itemsNameEn': controller
-                                              .product?.data.enProductName,
+                                              .pet?.data?.titleAr
+                                              .toString(),
+                                          'idProduct': controller.pet?.data?.id,
+                                          'itemsNameEn':
+                                              controller.pet?.data?.titleEn,
                                           'itemsPrice':
-                                              controller.product?.data.price,
+                                              controller.pet?.data?.price,
                                           'itemsImage': controller
-                                              .product?.data.primaryImageUrl,
+                                              .pet?.data?.featuredImage,
                                           'quntity':
                                               1, // You can adjust the quantity as needed.
                                         });
@@ -175,7 +172,7 @@ class ProductDetalis extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(9),
                                     ),
                                     child: Text(
-                                      '\$${controller.product?.data.price}',
+                                      '\$${controller.pet?.data?.price}',
                                       style: MangeStyles().getBoldStyle(
                                         color: ColorManager.kPrimary2,
                                         fontSize: 16,

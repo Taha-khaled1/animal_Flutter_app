@@ -28,7 +28,7 @@ class FavoritController extends GetxController {
         int respons = await sqlDb!.insert(
           'favorite',
           {
-            'id': favoritModel.id,
+            'idProduct': favoritModel.id,
             'title': favoritModel.title,
             'image': favoritModel.image,
           },

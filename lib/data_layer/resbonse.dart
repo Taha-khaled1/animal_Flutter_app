@@ -46,3 +46,12 @@ dynamic getSingleProduct(int id) async {
 
   return respons;
 }
+
+dynamic getSinglePet(int id) async {
+  Curd curd = Curd();
+  var respons = await curd.getrequest(
+    "${APiMange.singlepet}/$id",
+  );
+
+  return respons;
+}

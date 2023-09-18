@@ -13,7 +13,7 @@ class CartCard extends StatelessWidget {
     this.index,
     this.cart,
   }) : super(key: key);
-  final CartItem? cart;
+  final CartItemModel? cart;
 
   final int? index;
   @override
@@ -33,10 +33,10 @@ class CartCard extends StatelessWidget {
                   color: const Color(0xFFF5F6F9),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Image.asset(
+                child: Image.network(
                   cart!.image,
-                  width: 200,
-                  height: 210,
+                  width: 300,
+                  height: 300,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -87,13 +87,13 @@ class CartCard extends StatelessWidget {
                 builder: (controller) {
                   return IncrasingorDecrasing(
                     fontsize: 25,
-                    count: cart!.count,
+                    count: cart!.quantity,
                     size: 30,
                     onTapAdd: () {
-                      cartController.icrasingCount(index!, 20.0);
+                      cartController.icrasingCount(index!, cart!.price);
                     },
                     onTapmuns: () {
-                      cartController.decrasingCount(index!, 20.0);
+                      cartController.decrasingCount(index!, cart!.price);
                     },
                   );
                 },
