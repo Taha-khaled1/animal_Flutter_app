@@ -26,8 +26,12 @@ class CartItemModel {
   final String image; // URL or path to the product image
   int quantity; // Quantity of the product in the cart
   final int idProduct;
+  final String type;
+  final int vender_id;
   CartItemModel({
     required this.id,
+    required this.vender_id,
+    required this.type,
     required this.idProduct,
     required this.name,
     required this.nameEn,
@@ -41,6 +45,8 @@ class CartItemModel {
     return CartItemModel(
       id: map['id'],
       idProduct: map['idProduct'],
+      vender_id: map['vender_id'],
+      type: map['type'],
       name: map['itemsName'],
       nameEn: map['itemsNameEn'],
       price: map['itemsPrice'].toDouble(),
@@ -59,6 +65,8 @@ class CartItemModel {
       'itemsPrice': price,
       'itemsImage': image,
       'quntity': quantity,
+      'type': type,
+      'vender_id': vender_id,
     };
   }
 }

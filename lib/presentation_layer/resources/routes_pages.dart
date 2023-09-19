@@ -1,3 +1,4 @@
+import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,7 @@ List<GetPage<dynamic>>? getPage = [
   //     ]),
   GetPage(
     name: '/',
-    page: () => LoginScreen(),
+    page: () => Example(),
   ),
   // GetPage(
   //   name: Routes.PropertyDetalisScreen,

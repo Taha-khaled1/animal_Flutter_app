@@ -139,6 +139,9 @@ class PetDetalisScreen extends StatelessWidget {
                                         print("============");
                                         int response =
                                             await controller.addToCart({
+                                          'vender_id':
+                                              controller.pet?.data?.vendorId,
+                                          'type': "pet",
                                           'itemsName': controller
                                               .pet?.data?.titleAr
                                               .toString(),

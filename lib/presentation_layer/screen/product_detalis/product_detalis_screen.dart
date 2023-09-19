@@ -146,6 +146,9 @@ class ProductDetalis extends StatelessWidget {
                                               .product?.data.frProductName,
                                           'idProduct':
                                               controller.product?.data.id,
+                                          'vender_id':
+                                              controller.product?.data.vendorId,
+                                          'type': "product",
                                           'itemsNameEn': controller
                                               .product?.data.enProductName,
                                           'itemsPrice':

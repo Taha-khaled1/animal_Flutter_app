@@ -1,4 +1,8 @@
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
+import 'package:animal_app/presentation_layer/components/custombutten.dart';
+import 'package:animal_app/presentation_layer/components/show_dialog.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:animal_app/presentation_layer/screen/cart_screen/cart_controller/cart_controller.dart';
 import 'package:animal_app/presentation_layer/screen/cart_screen/widget/cart_card.dart';
 import 'package:animal_app/presentation_layer/screen/cart_screen/widget/final_price.dart';
@@ -8,6 +12,7 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/shimmer_screen/shimmer_screen.dart';
+import 'package:animal_app/presentation_layer/utlis/is_login/is_login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,6 +46,7 @@ class CartScreen extends StatelessWidget {
                           ),
                         ),
                         BottomSection(
+                          cartController: controller,
                           width: deviceInfo.localWidth * 0.85,
                         )
                       ],
@@ -59,8 +65,10 @@ class BottomSection extends StatelessWidget {
   const BottomSection({
     super.key,
     required this.width,
+    required this.cartController,
   });
   final double width;
+  final CartController cartController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -75,15 +83,11 @@ class BottomSection extends StatelessWidget {
               return Column(
                 children: [
                   FinalPrice(
-                    title: 'المجموع الفرعي',
+                    title: 'المجموع',
                     price: controller.totelPrice.toString(),
                   ),
                   SizedBox(
                     height: 5,
-                  ),
-                  FinalPrice(
-                    title: 'ضريبة',
-                    price: controller.totelTex.toString(),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -96,29 +100,52 @@ class BottomSection extends StatelessWidget {
                         'اختر نوع التسليم',
                         style: MangeStyles().getBoldStyle(
                           color: ColorManager.kPrimary,
-                          fontSize: FontSize.s20,
+                          fontSize: FontSize.s16,
                         ),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                      CachCard(
-                        controller: controller,
-                        width: width,
-                        text: 'توصيل منزلي',
-                        valuebut: 'توصيل منزلي',
+                      Center(
+                        child: CachCard(
+                          controller: controller,
+                          width: width,
+                          text: 'توصيل منزلي',
+                          valuebut: 'توصيل منزلي',
+                        ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      CachCard(
-                        controller: controller,
-                        width: width,
-                        text: 'الدفع كاش اونلاين',
-                        valuebut: 'الدفع كاش اونلاين',
+                      Center(
+                        child: CachCard(
+                          controller: controller,
+                          width: width,
+                          text: 'الدفع كاش اونلاين',
+                          valuebut: 'الدفع كاش اونلاين',
+                        ),
                       ),
                       SizedBox(
                         height: 10,
+                      ),
+                      CustomButton(
+                        width: double.infinity,
+                        haigh: 55,
+                        color: ColorManager.kPrimary,
+                        text: "الطلب الان",
+                        press: () {
+                          if (isLogin()) {
+                            cartController.sendOrder(controller.items);
+                          } else {
+                            showDilog(
+                              context,
+                              AppStrings.login_required.tr,
+                              onConfirmBtnTap: () {
+                                Get.to(() => LoginScreen());
+                              },
+                            );
+                          }
+                        },
                       ),
                     ],
                   )
@@ -149,9 +176,9 @@ class CachCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
+      height: 55,
       width: width,
-      alignment: Alignment.centerRight,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: ColorManager.grey2,
         borderRadius: BorderRadius.circular(20),

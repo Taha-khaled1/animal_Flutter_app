@@ -46,6 +46,8 @@ class SqlDb {
     CREATE TABLE cart (
     "id" INTEGER  NOT NULL PRIMARY KEY,
     "idProduct" INTEGER(11),
+    "vender_id" INTEGER(11),
+    "type" TEXT(255),
     "itemsName" TEXT(255),
     "itemsNameEn" TEXT(255),
     "itemsPrice" INTEGER(11),

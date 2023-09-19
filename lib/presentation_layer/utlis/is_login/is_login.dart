@@ -1,8 +1,9 @@
 import '../../../main.dart';
 
 bool isLogin() {
-  if (sharedPreferences.getString('id') == null ||
-      sharedPreferences.getString('name') == null) {
+  if (sharedPreferences.getInt('id') == null ||
+      sharedPreferences.getString('name') == null ||
+      sharedPreferences.getString('token') == null) {
     return false;
   }
   return true;

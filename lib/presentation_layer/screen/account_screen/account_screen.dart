@@ -6,6 +6,7 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/widget/customListtile.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:animal_app/presentation_layer/screen/edit_profile_screen/edit_profile_screen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/aboutpage.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/privacy_policy.dart';
@@ -106,7 +107,9 @@ class AccountScreen extends StatelessWidget {
                     haigh: 60,
                     color: ColorManager.kPrimary,
                     text: 'تسجيل الخروج',
-                    press: () {},
+                    press: () {
+                      Get.to(() => LoginScreen());
+                    },
                   ),
                 ),
               ],

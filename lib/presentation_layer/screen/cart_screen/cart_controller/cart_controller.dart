@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:animal_app/main.dart';
 import 'package:get/get.dart';
 import '../../../../data_layer/models/carttest.dart';
+import 'package:http/http.dart' as http;
 
 class CartController extends GetxController {
   double totelPrice = 0;
@@ -25,6 +28,49 @@ class CartController extends GetxController {
     for (Map<String, dynamic> map in response) {
       CartItemModel item = CartItemModel.fromMap(map);
       items.add(item);
+    }
+  }
+
+  List<Map<dynamic, dynamic>> prepareItemsData(List<CartItemModel> items) {
+    return items.map((item) {
+      return {
+        "item_type": item.type,
+        "product_id": item.idProduct,
+        // "vendor_id": item.vender_id,
+        "qty": item.quantity
+      };
+    }).toList();
+  }
+
+  Map<dynamic, dynamic> prepareOrderData(List<CartItemModel> items) {
+    return {
+      "payment_method": "COD",
+      "vendor_id": 3, // This should be changed if your vendor_id is dynamic
+      "items": prepareItemsData(items)
+    };
+  }
+
+  Future<void> sendOrder(List<CartItemModel> items) async {
+    try {
+      final url = Uri.parse('https://elegantae.net/api/client-account/order');
+      final headers = {
+        'Content-Type': 'application/json',
+        'Authorization':
+            "Bearer ${sharedPreferences.getString("token")!.toString()}",
+        // Add any other headers if required, like Authorization for example
+      };
+
+      final body = json.encode(prepareOrderData(items));
+
+      final response = await http.post(url, headers: headers, body: body);
+
+      if (response.statusCode == 200) {
+        print('Order sent successfully');
+      } else {
+        print('Failed to send order. Error: ${response.body}');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 

@@ -21,6 +21,7 @@ class CustomTextfeild extends StatelessWidget {
   final bool? isenabledBorder;
   final bool readOnly;
   final void Function()? onTap;
+  final void Function(String)? onChanged;
   final String? text;
   const CustomTextfeild({
     super.key,
@@ -42,6 +43,7 @@ class CustomTextfeild extends StatelessWidget {
     this.onTap,
     this.text,
     this.suffixIcon,
+    this.onChanged,
   });
 // 70 122
   @override
@@ -62,6 +64,7 @@ class CustomTextfeild extends StatelessWidget {
               ),
             ),
           TextFormField(
+            onChanged: onChanged,
             onTap: onTap,
             readOnly: readOnly,
             // maxLines: maxLines,

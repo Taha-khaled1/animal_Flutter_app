@@ -1,3 +1,4 @@
+import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/screen/cart_screen/cart_screen.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/CatogerySmall.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Hi Ahmed',
+              'Hi ${sharedPreferences.getString("name") ?? ""}',
               style: MangeStyles().getBoldStyle(
                 color: ColorManager.kPrimary2,
                 fontSize: FontSize.s22,
