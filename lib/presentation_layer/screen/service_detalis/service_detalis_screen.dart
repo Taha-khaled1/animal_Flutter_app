@@ -147,7 +147,23 @@ class ServiceDetalis extends StatelessWidget {
                           color: ColorManager.kPrimary,
                           text: 'الحجز الان',
                           press: () {
-                            Get.to(() => Appointment());
+                            Get.to(() => Appointment(
+                                  vendor_id: controller.serviceDetalisModel
+                                          ?.data!.vendor?.id ??
+                                      1,
+                                  name: controller.serviceDetalisModel?.data!
+                                          .arServiceName ??
+                                      "",
+                                  nameEn: controller.serviceDetalisModel?.data!
+                                          .enServiceName ??
+                                      "",
+                                  price: controller
+                                      .serviceDetalisModel!.data!.price!
+                                      .toDouble(),
+                                  id: controller
+                                          .serviceDetalisModel?.data!.id ??
+                                      1,
+                                ));
                           },
                         ),
                         SizedBox(

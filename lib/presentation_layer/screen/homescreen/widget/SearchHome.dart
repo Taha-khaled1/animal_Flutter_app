@@ -47,7 +47,7 @@ class SearchHome extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.search,
-                  size: 35,
+                  size: 28,
                   color: Colors.grey,
                 ),
               ),

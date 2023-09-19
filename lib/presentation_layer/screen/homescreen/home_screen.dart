@@ -31,6 +31,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: ColorManager.background,
         appBar: AppBar(
+          leadingWidth: 150,
           backgroundColor: ColorManager.background,
           elevation: 0,
           leading: Padding(
@@ -39,17 +40,17 @@ class HomeScreen extends StatelessWidget {
               'Hi ${sharedPreferences.getString("name") ?? ""}',
               style: MangeStyles().getBoldStyle(
                 color: ColorManager.kPrimary2,
-                fontSize: FontSize.s22,
+                fontSize: FontSize.s16,
               ),
             ),
           ),
           actions: [
-            IconButton(
-              onPressed: () {
-                Get.to(() => CartScreen());
-              },
-              icon: Image.asset('assets/images/Vector.png'),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     Get.to(() => CartScreen());
+            //   },
+            //   icon: Image.asset('assets/images/Vector.png'),
+            // ),
             IconButton(
               onPressed: () {
                 Get.to(NotficationScreen());
@@ -72,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          SearchHome(),
+                          SizedBox(height: 72, child: SearchHome()),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 13,
@@ -87,18 +88,18 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.symmetric(horizontal: 12),
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            height: 160,
+                            // margin: EdgeInsets.symmetric(horizontal: 12),
+                            width: MediaQuery.of(context).size.width * 1,
+                            height: 180,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: CarouselSlider(
                               items: homeController.ximageoffer,
                               options: CarouselOptions(
-                                height: 400,
+                                height: 450,
                                 aspectRatio: 16 / 9,
-                                viewportFraction: 1,
+                                viewportFraction: 0.7,
                                 initialPage: 0,
                                 enableInfiniteScroll: true,
                                 reverse: false,
@@ -108,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                                     Duration(milliseconds: 800),
                                 autoPlayCurve: Curves.fastOutSlowIn,
                                 enlargeCenterPage: true,
-                                enlargeFactor: 0.3,
+                                enlargeFactor: 0.2,
                                 // onPageChanged: callbackFunction,
                                 scrollDirection: Axis.horizontal,
                               ),

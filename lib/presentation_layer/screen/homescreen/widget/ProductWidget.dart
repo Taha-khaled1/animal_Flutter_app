@@ -25,7 +25,7 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find();
-    print(image.toString());
+    // print(image.toString());
     return InkWell(
       onTap: () {
         if (isProduct) {

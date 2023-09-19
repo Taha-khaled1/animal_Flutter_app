@@ -5,6 +5,7 @@ import 'package:animal_app/data_layer/models/catogery_model.dart';
 import 'package:animal_app/data_layer/models/favorite_model.dart';
 import 'package:animal_app/data_layer/models/home_model.dart';
 import 'package:animal_app/data_layer/resbonse.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
@@ -27,17 +28,24 @@ class HomeController extends GetxController {
         for (int i = 0; i < (homeModel!.data?.banners?.length ?? 0); i++)
           ximageoffer.add(
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image.network(
-                  "https://elegantae.net/uploaded_files/banner/${homeModel!.data?.banners?[i].image}",
-                  fit: BoxFit.cover,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
                 ),
-              ),
-            ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "https://elegantae.net/uploaded_files/banner/${homeModel!.data?.banners?[i].image}",
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    placeholder: (context, url) =>
+                        CircularProgressIndicator(), // Optional: show a placeholder until the image is loaded
+                    errorWidget: (context, url, error) => Icon(Icons
+                        .error), // Optional: show an error widget if the image fails to load
+                  ),
+                )),
           );
       } else {
         statusRequest = StatusRequest.failure;
