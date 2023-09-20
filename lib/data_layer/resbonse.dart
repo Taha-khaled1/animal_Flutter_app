@@ -55,3 +55,13 @@ dynamic getSinglePet(int id) async {
 
   return respons;
 }
+
+dynamic getfollowOrderRespon() async {
+  Curd curd = Curd();
+  var respons = await curd.getrequest(
+    APiMange.orders,
+    myheadersres: curd.myheadersfail,
+  );
+
+  return respons;
+}

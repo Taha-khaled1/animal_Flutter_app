@@ -9,6 +9,7 @@ class APiMange {
   static const String singleServices = "$baseurl/service";
   static const String singleProduct = "$baseurl/product";
   static const String singlepet = "$baseurl/pet";
+  static const String orders = "$baseurl/client-account/order";
   static const String filterdata = "$baseurl/filterdata";
   static const String catogerydata = "$baseurl/catogerydata";
   static const String propertydetalis = "$baseurl/propertydetalis";

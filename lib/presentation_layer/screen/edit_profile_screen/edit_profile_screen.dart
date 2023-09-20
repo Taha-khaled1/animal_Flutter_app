@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:animal_app/application_layer/utils/statusrequst.dart';
 import 'package:animal_app/application_layer/utils/valid.dart';
+import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/components/custombutten.dart';
@@ -12,6 +15,7 @@ import 'package:animal_app/presentation_layer/screen/account_screen/widget/custo
 import 'package:animal_app/presentation_layer/screen/edit_profile_screen/controller/edit_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -42,16 +46,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 child: ListView(
                   shrinkWrap: false,
                   children: [
-                    // Align(
-                    //   alignment: Alignment.topRight,
-                    //   child: Text(
-                    //     'تعديل الحساب',
-                    //     style: MangeStyles().getBoldStyle(
-                    //       color: ColorManager.kPrimary,
-                    //       fontSize: FontSize.s25,
-                    //     ),
-                    //   ),
-                    // ),
                     SizedBox(
                       height: 20,
                     ),
@@ -192,47 +186,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         haigh: 60,
                         color: ColorManager.kPrimary,
                         text: 'حفظ التغيرات',
-                        press: () {},
+                        press: () async {
+                          if (formkeysigin.currentState!.validate()) {
+                            formkeysigin.currentState!.save();
+                            try {
+                              await updateProfile(
+                                name: name!,
+                                phone: phone!,
+                                address:
+                                    'Abudabhi 201,82299 ابوظبي', // Replace with a variable if the address can change.
+                                photoPath:
+                                    'YOUR_PHOTO_PATH', // You'll need to handle photo uploads separately.
+                              );
+                              // Maybe show a success snackbar/message to the user.
+                            } catch (error) {
+                              // Handle any errors that might occur during the API call.
+                              print(error);
+                            }
+                          }
+                        },
                       ),
                     ),
-                    // HandlingDataView(
-                    //   statusRequest: statusRequest1,
-                    //   widget: CustomButton(
-                    //     width: deviceInfo.localWidth,
-                    //     haigh: 60,
-                    //     color: ColorManager.kPrimary,
-                    //     text: 'حفظ',
-                    //     press: () async {
-                    //       if (formkeysigin.currentState!.validate()) {
-                    //         formkeysigin.currentState!.save();
-
-                    //         statusRequest1 = StatusRequest.loading;
-                    //         setState(() {});
-                    //         var respon = await cahngeProfileRes(name!, phone!);
-                    //         statusRequest1 = handlingData(respon);
-                    //         try {
-                    //           if (StatusRequest.success == statusRequest1) {
-                    //             statusRequest1 = StatusRequest.none;
-                    //             sharedPreferences.setString(
-                    //                 'phone', phone.toString());
-
-                    //             sharedPreferences.setString(
-                    //                 'name', name.toString());
-                    //             Get.back();
-                    //             Get.back();
-                    //             showDilog(context, 'تم تغير المعلومات بنجاح');
-                    //           } else {
-                    //             statusRequest1 = StatusRequest.serverfailure;
-                    //           }
-                    //         } catch (e) {
-                    //           statusRequest1 = StatusRequest.erorr;
-                    //         }
-
-                    //         setState(() {});
-                    //       }
-                    //     },
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -241,6 +215,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         },
       ),
     );
+  }
+
+  Future<void> updateProfile({
+    required String name,
+    required String phone,
+    required String address,
+    required String photoPath,
+  }) async {
+    const url = 'https://elegantae.net/api/profile/update-profile';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${sharedPreferences.getString('token')}',
+    };
+
+    final body = jsonEncode({
+      'name': name,
+      'phone': phone,
+      'address': address,
+      'photo':
+          photoPath, // Note: Ensure that your API supports direct paths or requires base64 encoding.
+    });
+
+    final response =
+        await http.post(Uri.parse(url), headers: headers, body: body);
+
+    if (response.statusCode == 200) {
+      // Handle successful response
+      var data = jsonDecode(response.body);
+      if (data['success'] == true) {
+        // Update was successful
+      } else {
+        // Handle the error message if any.
+        print(data['message']);
+      }
+    } else {
+      // Handle the error
+      print('Error updating profile: ${response.statusCode}');
+    }
   }
 }
 
@@ -341,3 +353,41 @@ void handleAttachmentPressed(
     ),
   );
 }
+                    // HandlingDataView(
+                    //   statusRequest: statusRequest1,
+                    //   widget: CustomButton(
+                    //     width: deviceInfo.localWidth,
+                    //     haigh: 60,
+                    //     color: ColorManager.kPrimary,
+                    //     text: 'حفظ',
+                    //     press: () async {
+                    //       if (formkeysigin.currentState!.validate()) {
+                    //         formkeysigin.currentState!.save();
+
+                    //         statusRequest1 = StatusRequest.loading;
+                    //         setState(() {});
+                    //         var respon = await cahngeProfileRes(name!, phone!);
+                    //         statusRequest1 = handlingData(respon);
+                    //         try {
+                    //           if (StatusRequest.success == statusRequest1) {
+                    //             statusRequest1 = StatusRequest.none;
+                    //             sharedPreferences.setString(
+                    //                 'phone', phone.toString());
+
+                    //             sharedPreferences.setString(
+                    //                 'name', name.toString());
+                    //             Get.back();
+                    //             Get.back();
+                    //             showDilog(context, 'تم تغير المعلومات بنجاح');
+                    //           } else {
+                    //             statusRequest1 = StatusRequest.serverfailure;
+                    //           }
+                    //         } catch (e) {
+                    //           statusRequest1 = StatusRequest.erorr;
+                    //         }
+
+                    //         setState(() {});
+                    //       }
+                    //     },
+                    //   ),
+                    // ),

@@ -1,14 +1,15 @@
+import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/widget/customListtile.dart';
-import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:animal_app/presentation_layer/screen/edit_profile_screen/edit_profile_screen.dart';
-import 'package:animal_app/presentation_layer/screen/screenseting/aboutpage.dart';
+import 'package:animal_app/presentation_layer/screen/follow_order/follow_order.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/privacy_policy.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/sharescreen.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/terms.dart';
@@ -16,9 +17,14 @@ import 'package:animal_app/presentation_layer/screen/support_screen/support_prob
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
 
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +52,16 @@ class AccountScreen extends StatelessWidget {
                   titel: 'معلومات الحساب',
                   onTap: () {
                     Get.to(EditProfileScreen());
+                  },
+                ),
+                CustomListtile(
+                  widget: Icon(
+                    Icons.policy_outlined,
+                    color: Colors.black,
+                  ),
+                  titel: AppStrings.trackRequests.tr,
+                  onTap: () {
+                    Get.to(() => FollowOrderScreen());
                   },
                 ),
                 CustomListtile(
@@ -107,8 +123,13 @@ class AccountScreen extends StatelessWidget {
                     haigh: 60,
                     color: ColorManager.kPrimary,
                     text: 'تسجيل الخروج',
-                    press: () {
-                      Get.to(() => LoginScreen());
+                    press: () async {
+                      setState(() {
+                        sharedPreferences.remove("token");
+                        sharedPreferences.remove("id");
+                        Get.offAll(() => Example());
+                        pageIndex = 2;
+                      });
                     },
                   ),
                 ),
@@ -119,4 +140,8 @@ class AccountScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void siginOut() {
+  // pageIndex = 2;
 }
