@@ -13,9 +13,11 @@ class ServiceController extends GetxController {
   ServiceDetalisModel? serviceDetalisModel;
   late StatusRequest statusRequest;
   getSingleServicesRes(int id) async {
+    print("object");
     try {
       statusRequest = StatusRequest.loading;
       var response = await getSingleServices(id);
+      print("====> $response");
       statusRequest = handlingData(response);
       if (statusRequest == StatusRequest.success) {
         print('----------------------------------');
@@ -24,6 +26,7 @@ class ServiceController extends GetxController {
         statusRequest = StatusRequest.failure;
       }
     } catch (e) {
+      print(e.toString());
       statusRequest = StatusRequest.erorr;
     }
   }

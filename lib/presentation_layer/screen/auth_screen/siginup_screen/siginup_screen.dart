@@ -226,6 +226,9 @@ class _SiginupScreenState extends State<SiginupScreen> {
       sharedPreferences.setString('name', data['user']['name']);
       sharedPreferences.setString('email', data['user']['email']);
       sharedPreferences.setString('phone', data['user']['Number']);
+      sharedPreferences.setString('address', data['user']['address'] ?? "");
+      sharedPreferences.setString(
+          'profile_image', data['user']['profile_image'] ?? "");
       sharedPreferences.setString('token', data['token']);
       return true;
     } else {

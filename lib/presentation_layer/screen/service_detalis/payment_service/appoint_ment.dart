@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:animal_app/data_layer/models/home_model.dart';
 import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
@@ -37,6 +38,7 @@ class Appointment extends StatefulWidget {
 class _AppointmentState extends State<Appointment> {
   Time _time = Time(hour: 11, minute: 30, second: 20);
   bool iosStyle = true;
+  String data = '';
   Time? isnewTime;
   void onTimeChanged(Time newTime) {
     setState(() {
@@ -136,6 +138,10 @@ class _AppointmentState extends State<Appointment> {
                 selectionColor: ColorManager.kPrimary,
                 todayHighlightColor: ColorManager.kPrimary2,
                 onSelectionChanged: (dateRangePickerSelectionChangedArgs) {
+                  data = dateRangePickerSelectionChangedArgs.value
+                      .toString()
+                      .substring(0, 10);
+                  print("object : $data");
                   print(
                     dateRangePickerSelectionChangedArgs.value
                         .toString()
@@ -242,6 +248,9 @@ class _AppointmentState extends State<Appointment> {
                   text: 'الاستمرار لعملية الدفع',
                   press: () async {
                     if (isLogin()) {
+                      if (data.isEmpty) {
+                        return;
+                      }
                       makePayment();
                     } else {
                       showDilog(
@@ -335,7 +344,9 @@ class _AppointmentState extends State<Appointment> {
   }
 
   Future<void> orderItems() async {
-    final url = 'https://elegantae.net/api/client-account/order';
+    print(sharedPreferences.getString("token"));
+    print("+++++++++++++++++++++++++++++++++");
+    final url = 'https://elegantae.net/api/client-account/service-order';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ${sharedPreferences.getString("token")}',
@@ -344,7 +355,7 @@ class _AppointmentState extends State<Appointment> {
     final body = jsonEncode({
       "vendor_id": widget.vendor_id,
       "service_id": widget.id,
-      "date": "29-02-2024 08:00",
+      "date": "$data ${_time.hour}:${_time.minute}",
       "payment_method": "stripe"
     });
 

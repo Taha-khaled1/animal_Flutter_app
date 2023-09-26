@@ -12,7 +12,8 @@ class ServiceDetalisModel {
     success = json['success'];
     message = json['message'];
     code = json['code'];
-    direct = json['direct'];
+    direct = json['direct'].toString();
+    ;
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
@@ -104,15 +105,15 @@ class Vendor {
   String? about;
   int? isVendor;
   String? deviceToken;
-  Null? socialId;
-  Null? socialType;
-  Null? phone;
+  String? socialId;
+  String? socialType;
+  String? phone;
   String? openingFrom;
   String? openingTo;
   String? businessName;
   String? address;
   String? profileImage;
-  Null? vendorRate;
+  String? vendorRate;
   List<String>? galleryImages;
 
   Vendor(

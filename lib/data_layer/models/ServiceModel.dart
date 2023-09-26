@@ -2,7 +2,7 @@ class ServiceModel {
   bool? success;
   String? message;
   int? code;
-  Null? direct;
+  String? direct;
   List<ServiceCardModel>? serviceCardModel;
 
   ServiceModel(
@@ -16,7 +16,7 @@ class ServiceModel {
     success = json['success'];
     message = json['message'];
     code = json['code'];
-    direct = json['direct'];
+    direct = json['direct'] ?? "";
     if (json['data'] != null) {
       serviceCardModel = <ServiceCardModel>[];
       json['data'].forEach((v) {
@@ -54,7 +54,7 @@ class ServiceCardModel {
 
   ServiceCardModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    enServiceName = json['en_Service_Name'];
+    enServiceName = json['en_Service_Name'].toString();
     arServiceName = json['ar_Service_Name'];
     serviceImage = json['Service_image'];
     imageUrl = json['image_url'];

@@ -108,11 +108,11 @@ class Vendor {
   String? image;
   String? number;
   String? gender;
-  Null? dOB;
+  String? dOB;
   String? streetAddress;
   String? about;
   int? isAdmin;
-  Null? phone;
+  String? phone;
   String? openingFrom;
   String? openingTo;
   String? businessName;

@@ -85,7 +85,18 @@ class SqlDb {
     int response = await mydb!.rawDelete(sql);
     return response;
   }
+
   /////////////////////////////////////الدوال الجاهزه
+  deleteTable(String tableName) async {
+    Database? mydb = await db;
+    await mydb!.execute("DROP TABLE IF EXISTS $tableName");
+  }
+
+  deleteAllData(String tableName) async {
+    Database? mydb = await db;
+    int response = await mydb!.delete(tableName);
+    return response;
+  }
 
   read(String table) async {
     Database? mydb = await db;

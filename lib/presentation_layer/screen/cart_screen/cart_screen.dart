@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/show_dialog.dart';
@@ -14,9 +16,9 @@ import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/shimmer_screen/shimmer_screen.dart';
 import 'package:animal_app/presentation_layer/utlis/is_login/is_login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
-
-import '../../../data_layer/models/carttest.dart';
+import 'package:http/http.dart' as http;
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -61,7 +63,7 @@ class CartScreen extends StatelessWidget {
   }
 }
 
-class BottomSection extends StatelessWidget {
+class BottomSection extends StatefulWidget {
   const BottomSection({
     super.key,
     required this.width,
@@ -69,6 +71,13 @@ class BottomSection extends StatelessWidget {
   });
   final double width;
   final CartController cartController;
+
+  @override
+  State<BottomSection> createState() => _BottomSectionState();
+}
+
+class _BottomSectionState extends State<BottomSection> {
+  var paymentIntent = null;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -109,7 +118,7 @@ class BottomSection extends StatelessWidget {
                       Center(
                         child: CachCard(
                           controller: controller,
-                          width: width,
+                          width: widget.width,
                           text: 'توصيل منزلي',
                           valuebut: 'توصيل منزلي',
                         ),
@@ -120,7 +129,7 @@ class BottomSection extends StatelessWidget {
                       Center(
                         child: CachCard(
                           controller: controller,
-                          width: width,
+                          width: widget.width,
                           text: 'الدفع كاش اونلاين',
                           valuebut: 'الدفع كاش اونلاين',
                         ),
@@ -135,7 +144,13 @@ class BottomSection extends StatelessWidget {
                         text: "الطلب الان",
                         press: () {
                           if (isLogin()) {
-                            cartController.sendOrder(controller.items);
+                            if (widget.cartController.deliveryType ==
+                                "توصيل منزلي") {
+                              widget.cartController
+                                  .sendOrder(controller.items, "cod");
+                            } else {
+                              makePayment();
+                            }
                           } else {
                             showDilog(
                               context,
@@ -159,6 +174,79 @@ class BottomSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> makePayment() async {
+    try {
+      //STEP 1: Create Payment Intent
+      paymentIntent = await createPaymentIntent(
+          ((widget.cartController.totelPrice * 100).round()).toString(), 'aed');
+
+      //STEP 2: Initialize Payment Sheet
+      await Stripe.instance
+          .initPaymentSheet(
+              paymentSheetParameters: SetupPaymentSheetParameters(
+                  paymentIntentClientSecret: paymentIntent![
+                      'client_secret'], //Gotten from payment intent
+                  style: ThemeMode.light,
+                  merchantDisplayName: 'Ikay'))
+          .then((value) {});
+
+      //STEP 3: Display Payment sheet
+      displayPaymentSheet();
+    } catch (err) {
+      print(err.toString());
+    }
+  }
+
+  displayPaymentSheet() async {
+    try {
+      await Stripe.instance.presentPaymentSheet().then((value) async {
+        paymentIntent =
+            null; // Clear paymentIntent variable after successful payment.
+        print('Payment made successfully.');
+        widget.cartController.sendOrder(
+          widget.cartController.items,
+          "stripe",
+        );
+        showDilog(context, "Payment made successfully");
+      }).onError((error, stackTrace) {
+        showDilog(context, "Error while displaying Payment Sheet");
+        print('Error while displaying Payment Sheet: $error');
+      });
+    } on StripeException catch (e) {
+      showDilog(context, "Error while displaying Payment Sheet");
+
+      print('Stripe error: $e');
+    } catch (e) {
+      showDilog(context, "Error while displaying Payment Sheet");
+
+      print('General error while displaying Payment Sheet: $e');
+    }
+  }
+
+  createPaymentIntent(String amount, String currency) async {
+    try {
+      //Request body
+      Map<String, dynamic> body = {
+        'amount': amount,
+        'currency': currency,
+      };
+
+      //Make post request to Stripe
+      var response = await http.post(
+        Uri.parse('https://api.stripe.com/v1/payment_intents'),
+        headers: {
+          'Authorization':
+              'Bearer sk_test_51MU9CFCCrii3tAGhjMS2lA168mdfX5xkvJpdM5aBOWVDyaczVSCyPDI4UNilOo6QkK8gDr8NaLiwxLKjY5Bv2HqT006FQ6Vg7g',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: body,
+      );
+      return json.decode(response.body);
+    } catch (err) {
+      throw Exception(err.toString());
+    }
   }
 }
 

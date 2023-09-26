@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
           body: {
             'email': email,
             'password': pass,
-            "user_type": "vendor",
+            "user_type": "customer",
             "device_token": "Device Token From Firebase"
           },
         );
@@ -57,9 +57,13 @@ class LoginScreen extends StatelessWidget {
             final data = jsonDecode(response.body)['data'];
 
             sharedPreferences.setInt('id', data['user']['id']);
-            sharedPreferences.setString('name', data['user']['name']);
+            sharedPreferences.setString('name', data['user']['name'] ?? "");
             sharedPreferences.setString('email', data['user']['email']);
-            sharedPreferences.setString('phone', data['user']['Number']);
+            sharedPreferences.setString('phone', data['user']['phone'] ?? "");
+            sharedPreferences.setString(
+                'address', data['user']['address'] ?? "");
+            sharedPreferences.setString(
+                'profile_image', data['user']['profile_image'] ?? "");
             sharedPreferences.setString('token', data['token']);
             Get.offAll(() => Example());
             print("==============================================");

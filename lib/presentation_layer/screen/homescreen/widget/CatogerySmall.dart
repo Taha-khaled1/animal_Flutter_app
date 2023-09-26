@@ -18,7 +18,7 @@ class CatogerySmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => MoreProductScreen());
+        // Get.to(() => MoreProductScreen());
       },
       child: Column(
         children: [
