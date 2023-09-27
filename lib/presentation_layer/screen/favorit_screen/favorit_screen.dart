@@ -2,6 +2,7 @@ import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,9 @@ class FavoritScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen('المفضله'),
+      appBar: appbarscreen(
+        AppStrings.favorite.tr,
+      ),
       body: GetBuilder<FavoritController>(
         init: FavoritController(),
         builder: (controller) {
@@ -63,7 +66,7 @@ class FavoritScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 1),
                               Text(
-                                'افحص التافصيل',
+                                AppStrings.examine_the_details.tr,
                                 style: MangeStyles().getBoldStyle(
                                   color: Colors.grey,
                                   fontSize: FontSize.s18,

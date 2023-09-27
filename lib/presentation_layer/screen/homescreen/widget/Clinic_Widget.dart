@@ -3,15 +3,23 @@ import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Small_Circal.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/TimeWithHistory.dart';
+import 'package:animal_app/presentation_layer/utlis/image_checker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ClinicWidget extends StatelessWidget {
   const ClinicWidget({
     super.key,
+    required this.name,
+    required this.adress,
+    required this.from,
+    required this.to,
+    required this.image,
   });
-
+  final String name, adress, from, to, image;
   @override
   Widget build(BuildContext context) {
+    print(image);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       width: 320,
@@ -34,14 +42,20 @@ class ClinicWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         //  mainAxisSize: MainAxisSize.max,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CircleAvatar(
-              backgroundColor: ColorManager.background,
-              radius: 40,
-              backgroundImage: AssetImage('assets/icons/logoa_animal (2).png'),
-            ),
-          ),
+          image.contains("svg")
+              ? CircleAvatar(
+                  backgroundColor: ColorManager.background,
+                  radius: 40,
+                  child: SvgPicture.network(image),
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: CircleAvatar(
+                    backgroundColor: ColorManager.background,
+                    radius: 40,
+                    backgroundImage: NetworkImage(imageNetworkCheck(image)),
+                  ),
+                ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
@@ -49,7 +63,7 @@ class ClinicWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'رعاية الحيوانات الأليفة',
+                  name,
                   style: MangeStyles().getMediumStyle(
                     color: ColorManager.ktextblackk,
                     fontSize: FontSize.s16,
@@ -62,7 +76,7 @@ class ClinicWidget extends StatelessWidget {
                       color: ColorManager.kPrimary2,
                     ),
                     Text(
-                      'ابو ظبي',
+                      adress,
                       style: MangeStyles().getMediumStyle(
                         color: ColorManager.ktextblackk,
                         fontSize: FontSize.s16,
@@ -70,7 +84,7 @@ class ClinicWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                TimeWithReviwe(reviwe: '4.8', time: '01:00 - 08:00 PM'),
+                TimeWithReviwe(reviwe: '4.8', time: '${from} - ${to}'),
               ],
             ),
           )

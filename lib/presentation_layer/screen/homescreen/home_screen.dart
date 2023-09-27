@@ -1,5 +1,6 @@
 import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/screen/cart_screen/cart_screen.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/CatogerySmall.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Clinic_Widget.dart';
@@ -80,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                               vertical: 0,
                             ),
                             child: Text(
-                              'العروض',
+                              AppStrings.offers.tr,
                               style: MangeStyles().getBoldStyle(
                                 color: ColorManager.kPrimary2,
                                 fontSize: FontSize.s20,
@@ -128,22 +129,39 @@ class HomeScreen extends StatelessWidget {
                             height: 10,
                           ),
                           Titelmore(
-                            text1: 'عيادات بيطرية',
-                            text2: 'المزيد',
+                            text1: AppStrings.clinc.tr,
+                            text2: '',
                             onTap: () {},
                           ),
                           SizedBox(
                             height: 140,
                             child: ListView.builder(
-                              itemCount: 8,
+                              itemCount: homeController
+                                  .homeModel!.data?.vendors?.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return ClinicWidget();
+                                return ClinicWidget(
+                                  adress: homeController.homeModel!.data
+                                          ?.vendors?[index].address ??
+                                      "",
+                                  from: homeController.homeModel!.data
+                                          ?.vendors?[index].openingFrom ??
+                                      "",
+                                  to: homeController.homeModel!.data
+                                          ?.vendors?[index].openingTo ??
+                                      "",
+                                  name: homeController.homeModel!.data
+                                          ?.vendors?[index].name ??
+                                      "",
+                                  image: homeController.homeModel!.data
+                                          ?.vendors?[index].profileImage ??
+                                      "",
+                                );
                               },
                             ),
                           ),
                           Titelmore(
-                            text1: 'خدمات',
+                            text1: AppStrings.service.tr,
                             text2: 'المزيد',
                             onTap: () {
                               Get.to(() => MoreCatogeryScreen());
@@ -183,7 +201,7 @@ class HomeScreen extends StatelessWidget {
                           //   height: 10,
                           // ),
                           Titelmore(
-                            text1: 'الاقسام',
+                            text1: AppStrings.categories.tr,
                             text2: 'المزيد',
                             onTap: () {},
                           ),
@@ -233,7 +251,7 @@ class HomeScreen extends StatelessWidget {
                           ),
 
                           Titelmore(
-                            text1: 'تسوق منتجاتنا',
+                            text1: AppStrings.shop_products.tr,
                             text2: 'المزيد',
                             onTap: () {
                               Get.to(() => MoreProductScreen());
@@ -277,7 +295,7 @@ class HomeScreen extends StatelessWidget {
                           ),
 
                           Titelmore(
-                            text1: 'الحيوانات الاكثر شعبيا',
+                            text1: AppStrings.most_animals.tr,
                             text2: 'المزيد',
                             onTap: () {
                               Get.to(() => MoreProductScreen());

@@ -2,6 +2,7 @@ import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/navbar.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Small_Circal.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/Titelmore.dart';
@@ -145,7 +146,7 @@ class ServiceDetalis extends StatelessWidget {
                           width: 185,
                           haigh: 60,
                           color: ColorManager.kPrimary,
-                          text: 'الحجز الان',
+                          text: AppStrings.book_now.tr,
                           press: () {
                             Get.to(() => Appointment(
                                   vendor_id: controller.serviceDetalisModel
@@ -170,7 +171,7 @@ class ServiceDetalis extends StatelessWidget {
                           height: 20,
                         ),
                         Titelmore(
-                          text1: 'خدمات',
+                          text1: AppStrings.service.tr,
                           text2: 'المزيد',
                           onTap: () {},
                         ),

@@ -1,5 +1,6 @@
 import 'package:animal_app/presentation_layer/components/appbar1.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/catogery_card.dart';
 import 'package:animal_app/presentation_layer/screen/shimmer_screen/shimmer_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ class MoreCatogeryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen('الخدمات'),
+      appBar: appbarscreen(
+        AppStrings.service.tr,
+      ),
       body: GetBuilder<MorecatogeryController>(
         init: MorecatogeryController(),
         initState: (_) {},

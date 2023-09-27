@@ -2,6 +2,7 @@ import 'package:animal_app/presentation_layer/components/custombutten.dart';
 import 'package:animal_app/presentation_layer/components/show_dialog.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/home_screen.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/widget/ProductWidget.dart';
@@ -137,7 +138,7 @@ class ProductDetalis extends StatelessWidget {
                                     width: 185,
                                     haigh: 60,
                                     color: ColorManager.kPrimary,
-                                    text: 'اضافة الي السله',
+                                    text: AppStrings.add_cart.tr,
                                     press: () async {
                                       try {
                                         int response =
@@ -160,8 +161,12 @@ class ProductDetalis extends StatelessWidget {
                                         });
 
                                         if (response > 0) {
-                                          showDilog(context,
-                                              'تمت إضافة المنتج إلى السلة بنجاح');
+                                          showDilog(
+                                            context,
+                                            AppStrings
+                                                .item_added_to_cart_successfully
+                                                .tr,
+                                          );
                                         }
                                       } catch (e) {
                                         print(e);
@@ -194,7 +199,7 @@ class ProductDetalis extends StatelessWidget {
                           height: 15,
                         ),
                         Titelmore(
-                          text1: 'خدمات',
+                          text1: AppStrings.service.tr,
                           text2: 'المزيد',
                           onTap: () {},
                         ),

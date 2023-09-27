@@ -88,7 +88,7 @@ class _FollowOrderScreenState extends State<FollowOrderScreen> {
                   ),
                   DataColumn(
                     label: Text(
-                      "عدد المنتجات",
+                      AppStrings.num_product.tr,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),

@@ -277,7 +277,7 @@ class _AppointmentState extends State<Appointment> {
     try {
       //STEP 1: Create Payment Intent
       paymentIntent = await createPaymentIntent(
-          ((widget.price * 100).round()).toString(), 'USD');
+          ((widget.price * 100).round()).toString(), 'aed');
 
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance

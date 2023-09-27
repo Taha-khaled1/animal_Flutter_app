@@ -1,4 +1,5 @@
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
 import 'package:flutter/material.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
@@ -40,7 +41,7 @@ class SearchHome extends StatelessWidget {
                   color: ColorManager.kPrimary,
                 ),
               ),
-              hintText: 'البحث هنا ......',
+              hintText: ' ${AppStrings.search.tr} ......',
               prefixIcon: IconButton(
                 onPressed: () {
                   Get.to(() => MoreProductScreen());

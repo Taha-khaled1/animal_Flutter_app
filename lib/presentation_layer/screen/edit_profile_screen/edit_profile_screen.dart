@@ -9,6 +9,7 @@ import 'package:animal_app/presentation_layer/components/customtextfild.dart';
 import 'package:animal_app/presentation_layer/components/show_dialog.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/resources/values_manager.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/widget/customListtile.dart';
@@ -35,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen('معلومات الحساب'),
+      appBar: appbarscreen(AppStrings.account_information.tr),
       body: InfoWidget(
         builder: (context, deviceInfo) {
           return Padding(
@@ -83,7 +84,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       thickness: 1.2,
                     ),
                     Text(
-                      'الاسم واللقب',
+                      AppStrings.name.tr,
                       style: MangeStyles().getBoldStyle(
                         color: ColorManager.kTextlightgray,
                         fontSize: FontSize.s20,
@@ -98,13 +99,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onsaved: (p0) {
                         return name = p0.toString();
                       },
-                      titel: 'ادخل هنا',
+                      titel: AppStrings.enter.tr,
                       width: deviceInfo.localWidth * 0.02,
                       height: 70,
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'البريد الاكتروني',
+                      AppStrings.email.tr,
                       style: MangeStyles().getBoldStyle(
                         color: ColorManager.kTextlightgray,
                         fontSize: FontSize.s20,
@@ -120,7 +121,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onsaved: (p0) {
                         return email = p0.toString();
                       },
-                      titel: 'ادخل هنا',
+                      titel: AppStrings.enter.tr,
                       width: deviceInfo.localWidth * 0.02,
                       height: 70,
                     ),
@@ -142,13 +143,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onsaved: (p0) {
                         return phone = p0.toString();
                       },
-                      titel: 'ادخل هنا',
+                      titel: AppStrings.enter.tr,
                       width: deviceInfo.localWidth * 0.02,
                       height: 70,
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'عنوان المنزل',
+                      AppStrings.add_address.tr,
                       style: MangeStyles().getBoldStyle(
                         color: ColorManager.kTextlightgray,
                         fontSize: FontSize.s20,
@@ -164,7 +165,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onsaved: (p0) {
                         return address = p0.toString();
                       },
-                      titel: 'Abudabhi 201,82299 ابوظبي',
+                      titel: 'Abudabhi 201,82299',
                       width: deviceInfo.localWidth * 0.02,
                       height: 70,
                     ),
@@ -178,7 +179,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         width: deviceInfo.localWidth * 0.9,
                         haigh: 60,
                         color: ColorManager.kPrimary,
-                        text: 'حفظ التغيرات',
+                        text: AppStrings.save.tr,
                         press: () async {
                           if (formkeysigin.currentState!.validate()) {
                             formkeysigin.currentState!.save();
@@ -186,10 +187,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               await updateProfile(
                                 name: name!,
                                 phone: phone!,
-                                address:
+                                address: address ??
                                     'Abudabhi 201,82299 ابوظبي', // Replace with a variable if the address can change.
-                                photoPath:
-                                    'YOUR_PHOTO_PATH', // You'll need to handle photo uploads separately.
+                                photoPath: phone ??
+                                    "", // You'll need to handle photo uploads separately.
                               );
                               // Maybe show a success snackbar/message to the user.
                             } catch (error) {

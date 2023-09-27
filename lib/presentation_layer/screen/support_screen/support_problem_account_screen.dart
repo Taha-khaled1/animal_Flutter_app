@@ -1,7 +1,9 @@
 import 'package:animal_app/application_layer/utils/valid.dart';
+import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/components/customtextfild.dart';
 import 'package:animal_app/presentation_layer/resources/color_manager.dart';
+import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/support_screen/support_controller/support_controller.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +63,9 @@ class SupportProblemScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'ابقى معنا على تواصل',
+                                    sharedPreferences.getString("lang") == "en"
+                                        ? 'Stay in touch with us'
+                                        : 'ابقى معنا على تواصل',
                                     style: MangeStyles().getBoldStyle(
                                       color: ColorManager.kTextblack,
                                       fontSize: FontSize.s22,
@@ -72,7 +76,9 @@ class SupportProblemScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'إذا كان هناك أي مشاكل تريد إخبارنا بها أو أي شيء يمكننا مساعدتك فيه. ما عليك سوى ملء المربع أدناه وسنتواصل معك في أسرع وقت ممكن',
+                                    sharedPreferences.getString("lang") == "en"
+                                        ? 'If there are any problems you want to let us know or anything we can help you with. Simply fill out the box below and we will contact you as quickly as possible'
+                                        : 'إذا كان هناك أي مشاكل تريد إخبارنا بها أو أي شيء يمكننا مساعدتك فيه. ما عليك سوى ملء المربع أدناه وسنتواصل معك في أسرع وقت ممكن',
                                     style: MangeStyles().getBoldStyle(
                                       color: ColorManager.kTextlightgray,
                                       fontSize: FontSize.s14,
@@ -84,7 +90,7 @@ class SupportProblemScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    'الاسم واللقب',
+                                    AppStrings.name.tr,
                                     style: MangeStyles().getBoldStyle(
                                       color: ColorManager.kPrimary,
                                       fontSize: FontSize.s20,
@@ -99,7 +105,7 @@ class SupportProblemScreen extends StatelessWidget {
                                   onsaved: (p0) {
                                     return controller.name = p0!;
                                   },
-                                  titel: 'الاسم واللقب',
+                                  titel: AppStrings.enter.tr,
                                   width: deviceInfo.localWidth * 0.02,
                                   height: 70,
                                   isenabledBorder: false,
@@ -108,7 +114,7 @@ class SupportProblemScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    'البريد الالكتروني',
+                                    AppStrings.email.tr,
                                     style: MangeStyles().getBoldStyle(
                                       color: ColorManager.kPrimary,
                                       fontSize: FontSize.s20,
@@ -123,7 +129,7 @@ class SupportProblemScreen extends StatelessWidget {
                                   onsaved: (p0) {
                                     return controller.email = p0!;
                                   },
-                                  titel: 'البريد الاكتروني',
+                                  titel: AppStrings.enter.tr,
                                   width: deviceInfo.localWidth * 0.02,
                                   height: 70,
                                   isenabledBorder: false,
@@ -132,7 +138,7 @@ class SupportProblemScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    'الرسالة',
+                                    AppStrings.message.tr,
                                     style: MangeStyles().getBoldStyle(
                                       color: ColorManager.kPrimary,
                                       fontSize: FontSize.s20,
@@ -149,7 +155,7 @@ class SupportProblemScreen extends StatelessWidget {
                                   onsaved: (p0) {
                                     return controller.message = p0!;
                                   },
-                                  titel: 'اترك رسالتك هنا ...',
+                                  titel: AppStrings.message.tr,
                                   width: deviceInfo.localWidth * 0.02,
                                   height: 140,
                                   isBoarder: BorderStyle.none,

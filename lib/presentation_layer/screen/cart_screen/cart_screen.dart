@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen('عربة التسوق'),
+      appBar: appbarscreen(AppStrings.cart.tr),
       body: GetBuilder<CartController>(
         init: CartController(),
         builder: (controller) {
@@ -92,7 +92,7 @@ class _BottomSectionState extends State<BottomSection> {
               return Column(
                 children: [
                   FinalPrice(
-                    title: 'المجموع',
+                    title: AppStrings.total_price.tr,
                     price: controller.totelPrice.toString(),
                   ),
                   SizedBox(
@@ -106,7 +106,7 @@ class _BottomSectionState extends State<BottomSection> {
                         height: 5,
                       ),
                       Text(
-                        'اختر نوع التسليم',
+                        AppStrings.select_delivery_type.tr,
                         style: MangeStyles().getBoldStyle(
                           color: ColorManager.kPrimary,
                           fontSize: FontSize.s16,
@@ -119,7 +119,7 @@ class _BottomSectionState extends State<BottomSection> {
                         child: CachCard(
                           controller: controller,
                           width: widget.width,
-                          text: 'توصيل منزلي',
+                          text: AppStrings.home_delivery.tr,
                           valuebut: 'توصيل منزلي',
                         ),
                       ),
@@ -130,7 +130,7 @@ class _BottomSectionState extends State<BottomSection> {
                         child: CachCard(
                           controller: controller,
                           width: widget.width,
-                          text: 'الدفع كاش اونلاين',
+                          text: AppStrings.online_payment.tr,
                           valuebut: 'الدفع كاش اونلاين',
                         ),
                       ),
@@ -141,7 +141,7 @@ class _BottomSectionState extends State<BottomSection> {
                         width: double.infinity,
                         haigh: 55,
                         color: ColorManager.kPrimary,
-                        text: "الطلب الان",
+                        text: AppStrings.confirmation.tr,
                         press: () {
                           if (isLogin()) {
                             if (widget.cartController.deliveryType ==

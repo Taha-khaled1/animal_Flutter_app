@@ -29,7 +29,7 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.background,
-      appBar: appbarscreen('معلومات الحساب'),
+      appBar: appbarscreen(AppStrings.account_information.tr),
       body: InfoWidget(
         builder: (context, deviceInfo) {
           return Container(
@@ -40,7 +40,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   child: Text(
-                    'الحساب',
+                    AppStrings.account.tr,
                     style: MangeStyles().getBoldStyle(
                       color: ColorManager.ktextblackk,
                       fontSize: FontSize.s18,
@@ -49,7 +49,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 CustomListtile(
                   widget: Icon(Icons.person),
-                  titel: 'معلومات الحساب',
+                  titel: AppStrings.account_information.tr,
                   onTap: () {
                     Get.to(EditProfileScreen());
                   },
@@ -66,21 +66,21 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 CustomListtile(
                   widget: Icon(Icons.privacy_tip_outlined),
-                  titel: 'سياسة الخصوصيه',
+                  titel: AppStrings.privacy_policy.tr,
                   onTap: () {
                     Get.to(PrivacyPolicy());
                   },
                 ),
                 CustomListtile(
                   widget: Icon(Icons.policy_outlined),
-                  titel: 'شروط والاحكام',
+                  titel: AppStrings.terms_and_conditions.tr,
                   onTap: () {
                     Get.to(TermsAndConditionsPage());
                   },
                 ),
                 CustomListtile(
                   widget: Icon(Icons.share),
-                  titel: 'مشاركة التطبيق',
+                  titel: AppStrings.share_app.tr,
                   onTap: () {
                     Get.to(ShareApp());
                   },
@@ -89,7 +89,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   child: Text(
-                    'المساعده',
+                    AppStrings.help.tr,
                     style: MangeStyles().getBoldStyle(
                       color: ColorManager.ktextblackk,
                       fontSize: FontSize.s18,
@@ -98,20 +98,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 CustomListtile(
                   widget: Icon(Icons.call),
-                  titel: 'تواصل معنا',
+                  titel: AppStrings.connect_with_us.tr,
                   onTap: () {
                     Get.to(
                       SupportProblemScreen(),
                     );
                   },
                 ),
-                // CustomListtile(
-                //   widget: Icon(Icons.info_outline),
-                //   titel: 'معلومات عنا',
-                //   onTap: () {
-                //     Get.to(AboutPage());
-                //   },
-                // ),
+                SizedBox(
+                  height: 15,
+                ),
+                CustomSwitch(),
                 SizedBox(
                   height: 40,
                 ),
@@ -122,7 +119,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     width: deviceInfo.localWidth * 0.8,
                     haigh: 60,
                     color: ColorManager.kPrimary,
-                    text: 'تسجيل الخروج',
+                    text: AppStrings.sign_out.tr,
                     press: () async {
                       setState(() {
                         sharedPreferences.remove("token");
@@ -144,4 +141,43 @@ class _AccountScreenState extends State<AccountScreen> {
 
 void siginOut() {
   // pageIndex = 2;
+}
+
+class CustomSwitch extends StatefulWidget {
+  @override
+  _CustomSwitchState createState() => _CustomSwitchState();
+}
+
+class _CustomSwitchState extends State<CustomSwitch> {
+  bool _value = sharedPreferences.getString('lang') == 'ar' ? false : true;
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile.adaptive(
+      value: _value,
+      onChanged: (value) {
+        if (sharedPreferences.getString('lang') == 'ar') {
+          print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+          sharedPreferences.setString("lang", 'en');
+          Get.updateLocale(Locale('en'));
+
+          print(sharedPreferences.getString('lang'));
+        } else {
+          print('########################################');
+          sharedPreferences.setString("lang", 'ar');
+          Get.updateLocale(Locale('ar'));
+        }
+        setState(() {
+          _value = !_value;
+        });
+      },
+      title: Text(
+        AppStrings.chang_lang.tr,
+        style: MangeStyles().getBoldStyle(
+          color: ColorManager.ktextblackk,
+          fontSize: FontSize.s18,
+        ),
+      ),
+    );
+  }
 }

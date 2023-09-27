@@ -25,7 +25,10 @@ class AppStrings {
   static const String home = 'Home';
   static const String service = 'service';
   static const String cart = 'cart';
+  static const String enter = 'enter';
+  static const String num_product = 'num_product';
   static const String favorite = 'favorite';
+  static const String book_now = 'book_now';
   static const String account = 'account';
   static const String categories = 'categories';
   static const String results = 'Results';
@@ -111,4 +114,8 @@ class AppStrings {
   static const String number_of_sessions = 'number_of_sessions';
   static const String service_name = 'service_name';
   static const String the_date_of_booking = 'the_date_of_booking';
+  static const String clinc = 'clinc';
+  static const String shop_products = 'shop_products';
+  static const String most_animals = 'most_animals';
+  static const String search = 'search';
 }
