@@ -49,7 +49,7 @@ dependencies:
   quickalert: ^1.0.1
   curved_navigation_bar: ^1.0.3
   share_plus: ^6.0.1
-  firebase_core: ^2.4.1
+  firebase_core: ^2.17.0
   firebase_storage: ^11.0.10
   google_maps_flutter: ^2.2.3
   country_picker: ^2.0.19
@@ -65,7 +65,11 @@ dependencies:
   webview_flutter: ^4.2.4
   flutter_stripe: ^9.4.0
   data_table_2: ^2.4.2
-  
+  google_sign_in: ^6.1.5
+  firebase_auth: ^4.10.1
+
+
+
 dev_dependencies:
   flutter_launcher_icons: "^0.11.0"
   flutter_native_splash: ^2.2.16

@@ -1,3 +1,4 @@
+import 'package:animal_app/main.dart';
 import 'package:animal_app/presentation_layer/Infowidget/ui_components/info_widget.dart';
 import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/screen/more_product/more_product.dart';
@@ -32,6 +33,9 @@ class SearchHome extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            onChanged: (value) {
+              sharedPreferences.setString('search', value);
+            },
             style: TextStyle(color: ColorManager.white, fontSize: 14),
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -44,7 +48,9 @@ class SearchHome extends StatelessWidget {
               hintText: ' ${AppStrings.search.tr} ......',
               prefixIcon: IconButton(
                 onPressed: () {
-                  Get.to(() => MoreProductScreen());
+                  if (sharedPreferences.getString('search') != null) {
+                    Get.to(() => MoreProductScreen());
+                  }
                 },
                 icon: Icon(
                   Icons.search,

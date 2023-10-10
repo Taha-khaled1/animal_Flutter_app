@@ -1,4 +1,4 @@
-package com.example.animal_app
+package com.animal.nts
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

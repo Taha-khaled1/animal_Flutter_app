@@ -8,6 +8,7 @@ import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/strings_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/account_screen/widget/customListtile.dart';
+import 'package:animal_app/presentation_layer/screen/auth_screen/login_screen/login_screen.dart';
 import 'package:animal_app/presentation_layer/screen/edit_profile_screen/edit_profile_screen.dart';
 import 'package:animal_app/presentation_layer/screen/follow_order/follow_order.dart';
 import 'package:animal_app/presentation_layer/screen/screenseting/privacy_policy.dart';
@@ -47,23 +48,25 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                   ),
                 ),
-                CustomListtile(
-                  widget: Icon(Icons.person),
-                  titel: AppStrings.account_information.tr,
-                  onTap: () {
-                    Get.to(EditProfileScreen());
-                  },
-                ),
-                CustomListtile(
-                  widget: Icon(
-                    Icons.policy_outlined,
-                    color: Colors.black,
+                if (sharedPreferences.getString("token") != null)
+                  CustomListtile(
+                    widget: Icon(Icons.person),
+                    titel: AppStrings.account_information.tr,
+                    onTap: () {
+                      Get.to(EditProfileScreen());
+                    },
                   ),
-                  titel: AppStrings.trackRequests.tr,
-                  onTap: () {
-                    Get.to(() => FollowOrderScreen());
-                  },
-                ),
+                if (sharedPreferences.getString("token") != null)
+                  CustomListtile(
+                    widget: Icon(
+                      Icons.policy_outlined,
+                      color: Colors.black,
+                    ),
+                    titel: AppStrings.trackRequests.tr,
+                    onTap: () {
+                      Get.to(() => FollowOrderScreen());
+                    },
+                  ),
                 CustomListtile(
                   widget: Icon(Icons.privacy_tip_outlined),
                   titel: AppStrings.privacy_policy.tr,
@@ -119,14 +122,20 @@ class _AccountScreenState extends State<AccountScreen> {
                     width: deviceInfo.localWidth * 0.8,
                     haigh: 60,
                     color: ColorManager.kPrimary,
-                    text: AppStrings.sign_out.tr,
+                    text: sharedPreferences.getString("token") == null
+                        ? AppStrings.login.tr
+                        : AppStrings.sign_out.tr,
                     press: () async {
-                      setState(() {
-                        sharedPreferences.remove("token");
-                        sharedPreferences.remove("id");
-                        Get.offAll(() => Example());
-                        pageIndex = 2;
-                      });
+                      if (sharedPreferences.getString("token") != null) {
+                        setState(() {
+                          sharedPreferences.remove("token");
+                          sharedPreferences.remove("id");
+                          Get.offAll(() => Example());
+                          pageIndex = 2;
+                        });
+                      } else {
+                        Get.to(() => LoginScreen());
+                      }
                     },
                   ),
                 ),
@@ -137,10 +146,6 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
     );
   }
-}
-
-void siginOut() {
-  // pageIndex = 2;
 }
 
 class CustomSwitch extends StatefulWidget {
@@ -154,6 +159,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
+      activeColor: ColorManager.kPrimary,
       value: _value,
       onChanged: (value) {
         if (sharedPreferences.getString('lang') == 'ar') {
@@ -171,12 +177,24 @@ class _CustomSwitchState extends State<CustomSwitch> {
           _value = !_value;
         });
       },
-      title: Text(
-        AppStrings.chang_lang.tr,
-        style: MangeStyles().getBoldStyle(
-          color: ColorManager.ktextblackk,
-          fontSize: FontSize.s18,
-        ),
+      title: Row(
+        children: [
+          Image.asset(
+            sharedPreferences.getString('lang') == 'ar'
+                ? 'assets/icons/egypt.png'
+                : 'assets/icons/uslogo.png',
+            width: 27,
+            height: 27,
+          ),
+          SizedBox(width: 30),
+          Text(
+            AppStrings.chang_lang.tr,
+            style: MangeStyles().getBoldStyle(
+              color: Colors.black,
+              fontSize: FontSize.s18,
+            ),
+          ),
+        ],
       ),
     );
   }

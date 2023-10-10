@@ -65,3 +65,12 @@ dynamic getfollowOrderRespon() async {
 
   return respons;
 }
+
+dynamic getMoreProduct(String name) async {
+  Curd curd = Curd();
+  var respons = await curd.getrequest(
+    "https://elegantae.net/api/home-search?search=$name",
+  );
+
+  return respons;
+}

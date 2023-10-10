@@ -1,68 +1,41 @@
+import 'package:animal_app/application_layer/utils/handling.dart';
+import 'package:animal_app/application_layer/utils/statusrequst.dart';
+import 'package:animal_app/data_layer/models/more-products.dart';
+import 'package:animal_app/data_layer/resbonse.dart';
+import 'package:animal_app/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoreProductController extends GetxController {
   int page = 0;
-  // ProductModels? productModels;
-  // ProductModels? productModelsload;
+  late bool isload;
+  late StatusRequest statusRequest;
+  MoreProductModel? moreProductModel;
+  getMoreProductRes(name) async {
+    try {
+      statusRequest = StatusRequest.loading;
+      var response = await getMoreProduct(name);
+      statusRequest = handlingData(response);
+      if (statusRequest == StatusRequest.success) {
+        print('----------------------------------');
+        moreProductModel = await MoreProductModel.fromJson(response);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    } catch (e) {
+      statusRequest = StatusRequest.erorr;
+    }
+  }
 
-  // bool isFirstLoadRunning = false;
-  // bool hasNextPage = true;
-  // bool isLoadMoreRunning = false;
+  @override
+  void onInit() async {
+    isload = true;
+    update();
+    await getMoreProductRes(sharedPreferences.get("search"));
 
-  // void _loadMore() async {
-  //   if (hasNextPage == true &&
-  //       isFirstLoadRunning == false &&
-  //       isLoadMoreRunning == false &&
-  //       controller.position.extentAfter < 300) {
-  //     isLoadMoreRunning = true; // Display a progress indicator at the bottom
-  //     update();
-
-  //     page += 1; // Increase page by 1
-
-  //     try {
-  //       var response = await getProductOfCatogeryRespon(Get.arguments[0], page);
-  //       productModelsload = await ProductModels.fromJson(response);
-  //       ;
-
-  //       if (productModelsload!.data!.isNotEmpty) {
-  //         productModels!.data!.addAll(productModelsload!.data!);
-  //         update();
-  //       } else {
-  //         hasNextPage = false;
-  //         update();
-  //       }
-  //     } catch (err) {
-  //       if (kDebugMode) {
-  //         print('Something went wrong!');
-  //       }
-  //     }
-
-  //     isLoadMoreRunning = false;
-  //     update();
-  //   }
-  //   update();
-  // }
-
-  // void firstLoad() async {
-  //   isFirstLoadRunning = true;
-  //   update();
-
-  //   var response = await getProductOfCatogeryRespon(Get.arguments[0], 1);
-  //   productModels = await ProductModels.fromJson(response);
-  //   update();
-  //   isFirstLoadRunning = false;
-  //   update();
-  //   return response;
-  // }
-
-  // late ScrollController controller;
-  // @override
-  // void onInit() {
-  //   firstLoad();
-  //   update();
-  //   controller = ScrollController()..addListener(_loadMore);
-  //   super.onInit();
-  // }
+    isload = false;
+    update();
+    super.onInit();
+  }
 }

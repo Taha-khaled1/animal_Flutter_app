@@ -15,8 +15,10 @@ import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/Soc
 import 'package:animal_app/presentation_layer/screen/auth_screen/auth_widget/TextWithButtonTExt.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/forgot%20_password_screen/forgot_password_screen.dart';
 import 'package:animal_app/presentation_layer/screen/auth_screen/siginup_screen/siginup_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:quickalert/quickalert.dart';
 
@@ -192,11 +194,19 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SocialIcon(image: 'assets/icons/facebook.png'),
+                      SocialIcon(
+                        image: 'assets/icons/facebook.png',
+                        onTap: () {},
+                      ),
                       SizedBox(
                         width: 25,
                       ),
-                      SocialIcon(image: 'assets/icons/google.png'),
+                      SocialIcon(
+                        image: 'assets/icons/google.png',
+                        onTap: () {
+                          signInWithGoogle();
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -217,4 +227,25 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<UserCredential> signInWithGoogle() async {
+  // Trigger the authentication flow
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  UserCredential googelInfo =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+  if (googelInfo.user != null) {}
+
+  return await googelInfo;
 }

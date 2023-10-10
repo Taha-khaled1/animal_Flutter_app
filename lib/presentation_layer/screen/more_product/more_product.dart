@@ -7,12 +7,18 @@ import 'package:animal_app/presentation_layer/resources/color_manager.dart';
 import 'package:animal_app/presentation_layer/resources/font_manager.dart';
 import 'package:animal_app/presentation_layer/resources/styles_manager.dart';
 import 'package:animal_app/presentation_layer/screen/homescreen/home_screen.dart';
+import 'package:animal_app/presentation_layer/utlis/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MoreProductScreen extends StatelessWidget {
+class MoreProductScreen extends StatefulWidget {
   const MoreProductScreen({super.key});
 
+  @override
+  State<MoreProductScreen> createState() => _MoreProductScreenState();
+}
+
+class _MoreProductScreenState extends State<MoreProductScreen> {
   @override
   Widget build(BuildContext context) {
     print(Get.arguments);
@@ -26,7 +32,7 @@ class MoreProductScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: InfoWidget(
               builder: (context, deviceInfo) {
-                return 1 == 2
+                return controller.isload
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
@@ -58,11 +64,25 @@ class MoreProductScreen extends StatelessWidget {
                                 childAspectRatio:
                                     getChildAspectRatio(deviceInfo),
                               ),
-                              itemCount: 8,
+                              itemCount:
+                                  controller.moreProductModel!.data?.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return ProductWidget(
+                                  id: controller
+                                      .moreProductModel!.data?[index].id
+                                      .toString(),
                                   isProduct: true,
-                                  image: 'assets/images/image 22.png',
+                                  image: controller.moreProductModel!
+                                      .data?[index].primaryImageUrl,
+                                  name: translation(
+                                      ar: controller.moreProductModel!
+                                              .data?[index].frProductName ??
+                                          "",
+                                      en: controller.moreProductModel!
+                                              .data?[index].enProductName ??
+                                          ""),
+                                  price: controller
+                                      .moreProductModel!.data?[index].price,
                                 );
                               },
                             ),
